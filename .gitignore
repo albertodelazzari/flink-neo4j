@@ -1,6 +1,9 @@
+<<<<<<< HEAD
 /.project
 /.settings/
 /target/
+=======
+>>>>>>> refs/remotes/origin/master
 *.class
 
 # Mobile Tools for Java (J2ME)
