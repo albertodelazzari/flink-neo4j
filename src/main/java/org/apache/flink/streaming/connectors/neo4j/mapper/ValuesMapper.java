@@ -7,7 +7,10 @@ import java.io.Serializable;
 import java.util.Map;
 
 /**
- * @author nicolacamillo
+ * This class maps a generic item from a (Flink) stream to a set of key-value
+ * pairs that will be used in a templated cypher query.
+ * 
+ * @author Alberto De Lazzari
  *
  */
 public abstract class ValuesMapper<T> implements Serializable {
