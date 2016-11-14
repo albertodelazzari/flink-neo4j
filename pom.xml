@@ -179,5 +179,19 @@
 			</plugin>
 		</plugins>
 	</build>
+	
+	<reporting>
+	<plugins>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-javadoc-plugin</artifactId>
+			<version>2.10.4</version>
+			<configuration>
+				<reportOutputDirectory>${project.build.directory}/..</reportOutputDirectory>
+				<destDir>apidocs</destDir>
+			</configuration>
+		</plugin>
+	</plugins>
+</reporting>
 
 </project>

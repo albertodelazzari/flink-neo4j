@@ -53,6 +53,7 @@ public class Neo4JMappingStrategy<T, Mapper extends ValuesMapper<T>> implements 
 	 * Generate a statement with parameters (templated cypher query) for a given
 	 * item and a convert function.
 	 * 
+	 * @param item a data stream item
 	 * @return the executable statement with its text and parameters
 	 */
 	public Statement getStatement(T item) {

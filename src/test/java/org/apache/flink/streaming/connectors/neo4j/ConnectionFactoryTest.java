@@ -15,6 +15,9 @@ import org.neo4j.graphdb.factory.GraphDatabaseBuilder;
 import org.neo4j.graphdb.factory.GraphDatabaseFactory;
 
 /**
+ * This is not a unit test it's like more an integration one.
+ * This should be rewritten
+ * 
  * @author Alberto De Lazzari
  *
  */

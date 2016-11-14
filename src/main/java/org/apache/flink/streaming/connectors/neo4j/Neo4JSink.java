@@ -46,10 +46,13 @@ public class Neo4JSink<T> extends RichSinkFunction<T> {
 	private Map<String, String> config;
 
 	/**
+	 * The default constructor
 	 * 
 	 * @param mappingStrategy
-	 * @param statementTemplate
+	 *            a mapping strategy that will be used to map stream data to
+	 *            Neo4J data
 	 * @param config
+	 *            the connection configurations for Neo4J
 	 */
 	public Neo4JSink(Neo4JMappingStrategy<T, ValuesMapper<T>> mappingStrategy, final Map<String, String> config) {
 		this.mappingStrategy = mappingStrategy;
@@ -59,6 +62,8 @@ public class Neo4JSink<T> extends RichSinkFunction<T> {
 	/**
 	 * Initialize the connection to Neo4J. As the Elasticsearch connector we can
 	 * use and embedded instance or a cluster
+	 * 
+	 * @param parameters
 	 */
 	@Override
 	public void open(Configuration parameters) throws Exception {
@@ -77,6 +82,8 @@ public class Neo4JSink<T> extends RichSinkFunction<T> {
 	 * 
 	 * run("MATCH (n) WHERE n.name = {myNameParam} RETURN (n)",
 	 * Values.parameters( "myNameParam", "Bob" ))
+	 * 
+	 * @param element the data stream element
 	 */
 	@Override
 	public void invoke(T element) throws Exception {

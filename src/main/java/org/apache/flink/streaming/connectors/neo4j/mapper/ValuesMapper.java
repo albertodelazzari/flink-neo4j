@@ -16,15 +16,15 @@ import java.util.Map;
 public abstract class ValuesMapper<T> implements Serializable {
 
 	/**
-	 * 
+	 * The default serial version UID
 	 */
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Convert a generic item to a key-value pairs (used by a cypher statement)
 	 * 
-	 * @param item
-	 * @return
+	 * @param item the data stream item
+	 * @return a key-value set that will be used in a cypher statement
 	 */
 	public abstract Map<String, Object> convert(T item);
 }
