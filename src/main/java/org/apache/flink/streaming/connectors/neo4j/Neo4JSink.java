@@ -38,12 +38,12 @@ public class Neo4JSink<T> extends RichSinkFunction<T> {
 	 * 
 	 * @see Neo4JMappingStrategy
 	 */
-	private Neo4JMappingStrategy<T, ValuesMapper<T>> mappingStrategy;
+	protected Neo4JMappingStrategy<T, ValuesMapper<T>> mappingStrategy;
 
 	/**
 	 * A map representing the Neo4J connection parameters
 	 */
-	private Map<String, String> config;
+	protected Map<String, String> config;
 
 	/**
 	 * The default constructor
