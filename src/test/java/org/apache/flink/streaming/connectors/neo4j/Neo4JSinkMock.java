@@ -15,7 +15,7 @@ public class Neo4JSinkMock<T> extends Neo4JSink<T> {
 	private Neo4JDriverWrapper driver;
 
 	public Neo4JSinkMock(Neo4JMappingStrategy<T, ValuesMapper<T>> mappingStrategy, Map<String, String> config) {
-		super(mappingStrategy, null);
+		super(mappingStrategy, config);
 	}
 
 	@Override

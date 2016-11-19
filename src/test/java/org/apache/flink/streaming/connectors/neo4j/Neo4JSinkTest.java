@@ -31,7 +31,6 @@ public class Neo4JSinkTest implements Serializable {
 		}
 	}
 
-	@Ignore
 	@Test
 	public void testSink() throws Exception {
 		StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
