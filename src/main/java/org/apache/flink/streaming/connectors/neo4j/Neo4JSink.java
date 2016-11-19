@@ -37,12 +37,12 @@ public class Neo4JSink<T> extends RichSinkFunction<T> {
 	 * 
 	 * @see Neo4JMappingStrategy
 	 */
-	protected Neo4JMappingStrategy<T, ValuesMapper<T>> mappingStrategy;
+	private Neo4JMappingStrategy<T, ValuesMapper<T>> mappingStrategy;
 
 	/**
 	 * A map representing the Neo4J connection parameters
 	 */
-	protected transient Map<String, String> config;
+	private Map<String, String> config;
 
 	/**
 	 * The default constructor
@@ -82,7 +82,8 @@ public class Neo4JSink<T> extends RichSinkFunction<T> {
 	 * run("MATCH (n) WHERE n.name = {myNameParam} RETURN (n)",
 	 * Values.parameters( "myNameParam", "Bob" ))
 	 * 
-	 * @param element the data stream element
+	 * @param element
+	 *            the data stream element
 	 */
 	@Override
 	public void invoke(T element) throws Exception {
@@ -92,5 +93,13 @@ public class Neo4JSink<T> extends RichSinkFunction<T> {
 		session.run(queryStatement);
 
 		session.close();
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public Neo4JMappingStrategy<T, ValuesMapper<T>> getMappingStrategy() {
+		return this.mappingStrategy;
 	}
 }

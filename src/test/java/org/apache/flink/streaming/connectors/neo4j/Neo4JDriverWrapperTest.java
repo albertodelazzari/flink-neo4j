@@ -22,7 +22,7 @@ public class Neo4JDriverWrapperTest {
 		parameters.put("neo4j.url", "bolt://localhost:7687");
 		parameters.put("neo4j.auth.username", "neo4j");
 		parameters.put("neo4j.auth.password", "password");
-
+		
 		Neo4JDriverWrapper driverWrapper = new Neo4JDriverWrapperMock(parameters);
 		assertNotNull(driverWrapper);
 		Session session = driverWrapper.session();
