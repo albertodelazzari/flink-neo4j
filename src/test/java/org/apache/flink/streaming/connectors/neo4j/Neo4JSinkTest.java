@@ -10,7 +10,6 @@ import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.connectors.neo4j.mapper.Neo4JMappingStrategy;
 import org.apache.flink.streaming.connectors.neo4j.mapper.ValuesMapper;
-import org.junit.Ignore;
 import org.junit.Test;
 
 public class Neo4JSinkTest implements Serializable {
@@ -40,8 +39,8 @@ public class Neo4JSinkTest implements Serializable {
 		String statementTemplate = "MERGE (tuple:Tuple {name: {t1}, index: {t2}}) RETURN tuple";
 		Map<String, String> config = new HashMap<String, String>();
 		config.put(Neo4JDriverWrapper.URL, DEFAULT_URL);
-		config.put(Neo4JDriverWrapper.USERNAME, DEFAULT_USERNAME);
-		config.put(Neo4JDriverWrapper.PASSWORD, DEFAULT_PASSWORD);
+		config.put(Neo4JDriverWrapper.USERNAME_PARAM, DEFAULT_USERNAME);
+		config.put(Neo4JDriverWrapper.PASSWORD_PARAM, DEFAULT_PASSWORD);
 
 		ValuesMapper<Tuple2<String, Integer>> mapper = new SimpleValuesMapper();
 		Neo4JMappingStrategy<Tuple2<String, Integer>, ValuesMapper<Tuple2<String, Integer>>> mappingStrategy = new Neo4JMappingStrategy<Tuple2<String, Integer>, ValuesMapper<Tuple2<String, Integer>>>(

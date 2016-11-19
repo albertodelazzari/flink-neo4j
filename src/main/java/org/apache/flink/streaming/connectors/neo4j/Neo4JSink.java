@@ -42,7 +42,7 @@ public class Neo4JSink<T> extends RichSinkFunction<T> {
 	/**
 	 * A map representing the Neo4J connection parameters
 	 */
-	protected Map<String, String> config;
+	protected transient Map<String, String> config;
 
 	/**
 	 * The default constructor

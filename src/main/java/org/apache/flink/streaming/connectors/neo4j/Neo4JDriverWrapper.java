@@ -26,9 +26,9 @@ public class Neo4JDriverWrapper implements Serializable {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(Neo4JDriverWrapper.class);
 
-	public static final String USERNAME = "neo4j.auth.username";
+	public static final String USERNAME_PARAM = "neo4j.auth.username";
 
-	public static final String PASSWORD = "neo4j.auth.password";
+	public static final String PASSWORD_PARAM = "neo4j.auth.password";
 
 	public static final String URL = "neo4j.url";
 
@@ -42,10 +42,13 @@ public class Neo4JDriverWrapper implements Serializable {
 	 */
 	public Neo4JDriverWrapper(final Map<String, String> parameters) {
 		// We want to ensure that all the mandatory parameters are defined
-		assert parameters.containsKey(URL);
-		assert parameters.containsKey(USERNAME);
-		assert parameters.containsKey(PASSWORD);
-
+		boolean urlDefined = parameters.containsKey(URL);
+		assert urlDefined;
+		boolean usernameDefined = parameters.containsKey(USERNAME_PARAM);
+		assert usernameDefined;
+		boolean passwordDefined = parameters.containsKey(PASSWORD_PARAM);
+		assert passwordDefined;
+		
 		this.parameters = parameters;
 		this.initDriver();
 	}
@@ -56,8 +59,8 @@ public class Neo4JDriverWrapper implements Serializable {
 	 */
 	protected void initDriver() {
 		String url = parameters.get(URL);
-		String username = parameters.get(USERNAME);
-		String password = parameters.get(PASSWORD);
+		String username = parameters.get(USERNAME_PARAM);
+		String password = parameters.get(PASSWORD_PARAM);
 
 		AuthToken authToken = AuthTokens.basic(username, password);
 		LOGGER.debug("Basic authentication token with username {}", username);
