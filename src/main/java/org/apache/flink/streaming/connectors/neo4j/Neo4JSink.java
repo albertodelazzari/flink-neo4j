@@ -9,7 +9,6 @@ import org.apache.flink.configuration.Configuration;
 import org.apache.flink.streaming.api.functions.sink.RichSinkFunction;
 import org.apache.flink.streaming.connectors.neo4j.mapper.Neo4JMappingStrategy;
 import org.apache.flink.streaming.connectors.neo4j.mapper.ValuesMapper;
-import org.neo4j.driver.v1.Driver;
 import org.neo4j.driver.v1.Session;
 import org.neo4j.driver.v1.Statement;
 import org.slf4j.Logger;
@@ -31,7 +30,7 @@ public class Neo4JSink<T> extends RichSinkFunction<T> {
 	/**
 	 * Neo4J driver should be not serialized
 	 */
-	private transient Driver driver;
+	private transient Neo4JDriverWrapper driver;
 
 	/**
 	 * The mapping strategy that we use to map data from Flink to Neo4J
@@ -67,7 +66,7 @@ public class Neo4JSink<T> extends RichSinkFunction<T> {
 	 */
 	@Override
 	public void open(Configuration parameters) throws Exception {
-		driver = ConnectionFactory.getDriver(this.config);
+		driver = new Neo4JDriverWrapper(this.config);
 	}
 
 	@Override

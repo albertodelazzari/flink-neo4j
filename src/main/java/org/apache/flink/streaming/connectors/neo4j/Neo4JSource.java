@@ -7,7 +7,6 @@ import java.util.Map;
 
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.streaming.api.functions.source.RichSourceFunction;
-import org.neo4j.driver.v1.Driver;
 import org.neo4j.driver.v1.Statement;
 
 /**
@@ -21,7 +20,7 @@ public class Neo4JSource<T> extends RichSourceFunction<T> {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private Driver driver;
+	private Neo4JDriverWrapper driver;
 
 	private Map<String, String> config;
 
@@ -35,7 +34,7 @@ public class Neo4JSource<T> extends RichSourceFunction<T> {
 	 */
 	@Override
 	public void open(Configuration parameters) throws Exception {
-		driver = ConnectionFactory.getDriver(this.config);
+		driver = new Neo4JDriverWrapper(this.config);
 	}
 
 	@Override

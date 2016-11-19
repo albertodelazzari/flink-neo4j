@@ -1,21 +1,18 @@
 package org.apache.flink.streaming.connectors.neo4j;
 
-import java.io.File;
 import java.util.Map;
 
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.streaming.connectors.neo4j.mapper.Neo4JMappingStrategy;
 import org.apache.flink.streaming.connectors.neo4j.mapper.ValuesMapper;
+import org.neo4j.driver.v1.Session;
 import org.neo4j.driver.v1.Statement;
-import org.neo4j.graphdb.GraphDatabaseService;
-import org.neo4j.graphdb.factory.GraphDatabaseBuilder;
-import org.neo4j.graphdb.factory.GraphDatabaseFactory;
 
 public class Neo4JSinkMock<T> extends Neo4JSink<T> {
 
-	private transient GraphDatabaseService graphDatabaseService;
-
 	private static final long serialVersionUID = 1L;
+
+	private Neo4JDriverWrapper driver;
 
 	public Neo4JSinkMock(Neo4JMappingStrategy<T, ValuesMapper<T>> mappingStrategy, Map<String, String> config) {
 		super(mappingStrategy, null);
@@ -23,20 +20,19 @@ public class Neo4JSinkMock<T> extends Neo4JSink<T> {
 
 	@Override
 	public void open(Configuration parameters) throws Exception {
-		GraphDatabaseBuilder builder = new GraphDatabaseFactory()
-				.newEmbeddedDatabaseBuilder(new File("target/tmp/data/graph.db"));
-		graphDatabaseService = builder.newGraphDatabase();
+		driver = new Neo4JDriverWrapperMock(this.config);
 	}
 
 	@Override
 	public void close() {
-		// TODO Auto-generated method stub
-		graphDatabaseService.shutdown();
+		driver.close();
 	}
 
 	@Override
 	public void invoke(T element) throws Exception {
 		Statement queryStatement = this.mappingStrategy.getStatement(element);
-		graphDatabaseService.execute(queryStatement.text(), queryStatement.parameters().asMap());
+		Session session = driver.session();
+		
+		session.run(queryStatement);
 	}
 }

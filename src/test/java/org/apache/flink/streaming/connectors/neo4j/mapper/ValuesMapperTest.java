@@ -25,7 +25,6 @@ public class ValuesMapperTest {
 			map.put("key", item);
 			return map;
 		}
-
 	}
 
 	@Test

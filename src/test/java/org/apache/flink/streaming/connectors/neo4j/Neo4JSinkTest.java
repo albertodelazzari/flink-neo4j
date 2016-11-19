@@ -40,9 +40,9 @@ public class Neo4JSinkTest implements Serializable {
 
 		String statementTemplate = "MERGE (tuple:Tuple {name: {t1}, index: {t2}}) RETURN tuple";
 		Map<String, String> config = new HashMap<String, String>();
-		config.put(ConnectionFactory.URL, DEFAULT_URL);
-		config.put(ConnectionFactory.USERNAME, DEFAULT_USERNAME);
-		config.put(ConnectionFactory.PASSWORD, DEFAULT_PASSWORD);
+		config.put(Neo4JDriverWrapper.URL, DEFAULT_URL);
+		config.put(Neo4JDriverWrapper.USERNAME, DEFAULT_USERNAME);
+		config.put(Neo4JDriverWrapper.PASSWORD, DEFAULT_PASSWORD);
 
 		ValuesMapper<Tuple2<String, Integer>> mapper = new SimpleValuesMapper();
 		Neo4JMappingStrategy<Tuple2<String, Integer>, ValuesMapper<Tuple2<String, Integer>>> mappingStrategy = new Neo4JMappingStrategy<Tuple2<String, Integer>, ValuesMapper<Tuple2<String, Integer>>>(
