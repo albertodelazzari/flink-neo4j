@@ -20,7 +20,7 @@ public class ValuesMapperTest {
 		private static final long serialVersionUID = 1L;
 
 		@Override
-		public Map<String, Object> convert(String item) {
+		public Map<String, Object> deserialize(String item) {
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("key", item);
 			return map;
@@ -32,7 +32,7 @@ public class ValuesMapperTest {
 		StringValuesMapper stringValuesMapper = new StringValuesMapper();
 
 		String item = "item";
-		Map<String, Object> map = stringValuesMapper.convert(item);
+		Map<String, Object> map = stringValuesMapper.deserialize(item);
 
 		Assert.assertNotNull(map);
 		Assert.assertTrue(!map.isEmpty());

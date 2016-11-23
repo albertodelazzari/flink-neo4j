@@ -19,7 +19,7 @@ import org.neo4j.driver.v1.Statement;
  * @author Alberto De Lazzari
  *
  */
-public class Neo4JMappingStrategy<T, Mapper extends ValuesMapper<T>> implements Serializable {
+public class Neo4JSinkMappingStrategy<T, MAPPER extends ValuesMapper<T>> implements Serializable {
 
 	/**
 	 * 
@@ -37,14 +37,14 @@ public class Neo4JMappingStrategy<T, Mapper extends ValuesMapper<T>> implements 
 	 * 
 	 * @see ValuesMapper
 	 */
-	private Mapper mapper;
+	private MAPPER mapper;
 
 	/**
 	 * 
 	 * @param templateStatement
 	 * @param mapper
 	 */
-	public Neo4JMappingStrategy(String templateStatement, Mapper mapper) {
+	public Neo4JSinkMappingStrategy(String templateStatement, MAPPER mapper) {
 		this.templateStatement = templateStatement;
 		this.mapper = mapper;
 	}
@@ -59,7 +59,7 @@ public class Neo4JMappingStrategy<T, Mapper extends ValuesMapper<T>> implements 
 	public Statement getStatement(T item) {
 		Statement statement = new Statement(templateStatement);
 
-		Map<String, Object> parameters = mapper.convert(item);
+		Map<String, Object> parameters = mapper.deserialize(item);
 		return statement.withParameters(parameters);
 	}
 }

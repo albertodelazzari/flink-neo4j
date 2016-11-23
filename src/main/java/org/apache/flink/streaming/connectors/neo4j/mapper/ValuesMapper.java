@@ -3,7 +3,6 @@
  */
 package org.apache.flink.streaming.connectors.neo4j.mapper;
 
-import java.io.Serializable;
 import java.util.Map;
 
 /**
@@ -13,7 +12,7 @@ import java.util.Map;
  * @author Alberto De Lazzari
  *
  */
-public abstract class ValuesMapper<T> implements Serializable {
+public abstract class ValuesMapper<T> implements DeserializationMapper<T> {
 
 	/**
 	 * The default serial version UID
@@ -26,5 +25,5 @@ public abstract class ValuesMapper<T> implements Serializable {
 	 * @param item the data stream item
 	 * @return a key-value set that will be used in a cypher statement
 	 */
-	public abstract Map<String, Object> convert(T item);
+	public abstract Map<String, Object> deserialize(T item);
 }

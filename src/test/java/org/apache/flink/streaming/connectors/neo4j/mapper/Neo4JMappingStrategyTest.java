@@ -15,12 +15,12 @@ public class Neo4JMappingStrategyTest {
 	public void testMappingStrategy() {
 
 		String templateStatement = "MATCH (n {id:{key}}) return n";
-		Neo4JMappingStrategy<String, StringValuesMapper> mappingStrategy = new Neo4JMappingStrategy<String, ValuesMapperTest.StringValuesMapper>(
+		Neo4JSinkMappingStrategy<String, StringValuesMapper> mappingStrategy = new Neo4JSinkMappingStrategy<String, ValuesMapperTest.StringValuesMapper>(
 				templateStatement, stringValuesMapper);
 
 		Statement statement = mappingStrategy.getStatement("dummy");
 		Collection<Object> statementValues = statement.parameters().asMap().values();
-		Collection<Object> mappedValues = stringValuesMapper.convert("dummy").values();
+		Collection<Object> mappedValues = stringValuesMapper.deserialize("dummy").values();
 
 		Assert.assertTrue(statementValues.size() == mappedValues.size());
 		Assert.assertTrue(statementValues.containsAll(mappedValues) && mappedValues.containsAll(statementValues));

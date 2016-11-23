@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.flink.configuration.Configuration;
-import org.apache.flink.streaming.connectors.neo4j.mapper.Neo4JMappingStrategy;
+import org.apache.flink.streaming.connectors.neo4j.mapper.Neo4JSinkMappingStrategy;
 import org.apache.flink.streaming.connectors.neo4j.mapper.ValuesMapper;
 import org.neo4j.driver.v1.Session;
 import org.neo4j.driver.v1.Statement;
@@ -15,7 +15,7 @@ public class Neo4JSinkMock<T> extends Neo4JSink<T> {
 
 	private Neo4JDriverWrapper driver;
 
-	public Neo4JSinkMock(Neo4JMappingStrategy<T, ValuesMapper<T>> mappingStrategy, Map<String, String> config) {
+	public Neo4JSinkMock(Neo4JSinkMappingStrategy<T, ValuesMapper<T>> mappingStrategy, Map<String, String> config) {
 		super(mappingStrategy, config);
 	}
 
