@@ -15,7 +15,7 @@ import org.junit.Test;
  */
 public class ValuesMapperTest {
 
-	class StringValuesMapper extends ValuesMapper<String> {
+	class StringValuesMapper implements DeserializationMapper<String> {
 
 		private static final long serialVersionUID = 1L;
 

@@ -38,7 +38,7 @@ public class Neo4JDriverWrapper implements Serializable {
 
 	/**
 	 * 
-	 * @param parameters
+	 * @param parameters the connnection parameters
 	 */
 	public Neo4JDriverWrapper(final Map<String, String> parameters) {
 		// We want to ensure that all the mandatory parameters are defined
@@ -73,7 +73,7 @@ public class Neo4JDriverWrapper implements Serializable {
 	/**
 	 * Establish a session
 	 * 
-	 * @return
+	 * @return a Neo4J session
 	 */
 	public Session session() {
 		return driver.session();

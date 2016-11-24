@@ -19,7 +19,7 @@ import org.neo4j.driver.v1.Statement;
  * @author Alberto De Lazzari
  *
  */
-public class Neo4JSinkMappingStrategy<T, MAPPER extends ValuesMapper<T>> implements Serializable {
+public class Neo4JSinkMappingStrategy<T, M extends DeserializationMapper<T>> implements Serializable {
 
 	/**
 	 * 
@@ -35,16 +35,16 @@ public class Neo4JSinkMappingStrategy<T, MAPPER extends ValuesMapper<T>> impleme
 	 * The mapper that will map a item from a Flink stream to a set of
 	 * parameters
 	 * 
-	 * @see ValuesMapper
+	 * @see DeserializationMapper
 	 */
-	private MAPPER mapper;
+	private M mapper;
 
 	/**
 	 * 
-	 * @param templateStatement
-	 * @param mapper
+	 * @param templateStatement the cypher statement template
+	 * @param mapper an actual DeerializationMapper implementation
 	 */
-	public Neo4JSinkMappingStrategy(String templateStatement, MAPPER mapper) {
+	public Neo4JSinkMappingStrategy(String templateStatement, M mapper) {
 		this.templateStatement = templateStatement;
 		this.mapper = mapper;
 	}

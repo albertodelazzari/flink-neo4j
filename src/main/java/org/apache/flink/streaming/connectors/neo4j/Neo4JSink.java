@@ -7,8 +7,8 @@ import java.util.Map;
 
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.streaming.api.functions.sink.RichSinkFunction;
+import org.apache.flink.streaming.connectors.neo4j.mapper.DeserializationMapper;
 import org.apache.flink.streaming.connectors.neo4j.mapper.Neo4JSinkMappingStrategy;
-import org.apache.flink.streaming.connectors.neo4j.mapper.ValuesMapper;
 import org.neo4j.driver.v1.Session;
 import org.neo4j.driver.v1.Statement;
 import org.slf4j.Logger;
@@ -35,9 +35,9 @@ public class Neo4JSink<T> extends RichSinkFunction<T> {
 	/**
 	 * The mapping strategy that we use to map data from Flink to Neo4J
 	 * 
-	 * @see Neo4JMappingStrategy
+	 * @see Neo4JSinkMappingStrategy
 	 */
-	private Neo4JSinkMappingStrategy<T, ValuesMapper<T>> mappingStrategy;
+	private Neo4JSinkMappingStrategy<T, DeserializationMapper<T>> mappingStrategy;
 
 	/**
 	 * A map representing the Neo4J connection parameters
@@ -53,7 +53,7 @@ public class Neo4JSink<T> extends RichSinkFunction<T> {
 	 * @param config
 	 *            the connection configurations for Neo4J
 	 */
-	public Neo4JSink(final Neo4JSinkMappingStrategy<T, ValuesMapper<T>> mappingStrategy, final Map<String, String> config) {
+	public Neo4JSink(final Neo4JSinkMappingStrategy<T, DeserializationMapper<T>> mappingStrategy, final Map<String, String> config) {
 		this.mappingStrategy = mappingStrategy;
 		this.config = config;
 	}
@@ -62,7 +62,7 @@ public class Neo4JSink<T> extends RichSinkFunction<T> {
 	 * Initialize the connection to Neo4J. As the Elasticsearch connector we can
 	 * use and embedded instance or a cluster
 	 * 
-	 * @param parameters
+	 * @param parameters the configuration paramenters for this Sink
 	 */
 	@Override
 	public void open(Configuration parameters) throws Exception {
@@ -97,9 +97,9 @@ public class Neo4JSink<T> extends RichSinkFunction<T> {
 
 	/**
 	 * 
-	 * @return
+	 * @return a mapping strategy
 	 */
-	public Neo4JSinkMappingStrategy<T, ValuesMapper<T>> getMappingStrategy() {
+	public Neo4JSinkMappingStrategy<T, DeserializationMapper<T>> getMappingStrategy() {
 		return this.mappingStrategy;
 	}
 }
