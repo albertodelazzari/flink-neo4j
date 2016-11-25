@@ -48,6 +48,14 @@
 			<artifactId>flink-streaming-java_2.10</artifactId>
 			<version>${flink.version}</version>
 			<scope>provided</scope>
+			<!--  
+			<exclusions>
+				<exclusion>
+					<groupId>org.scala-lang</groupId>
+					<artifactId>scala-library</artifactId>
+				</exclusion>
+			</exclusions>
+			-->
 		</dependency>
 		<dependency>
 			<groupId>org.neo4j.driver</groupId>
@@ -76,6 +84,14 @@
 			<artifactId>neo4j</artifactId>
 			<version>${neo4j.version}</version>
 			<scope>test</scope>
+			<!--  
+			<exclusions>
+				<exclusion>
+					<groupId>org.scala-lang</groupId>
+					<artifactId>scala-library</artifactId>
+				</exclusion>
+			</exclusions>
+			-->
 		</dependency>
 
 		<dependency>

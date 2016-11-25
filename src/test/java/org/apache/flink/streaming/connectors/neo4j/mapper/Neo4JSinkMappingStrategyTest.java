@@ -2,20 +2,19 @@ package org.apache.flink.streaming.connectors.neo4j.mapper;
 
 import java.util.Collection;
 
-import org.apache.flink.streaming.connectors.neo4j.mapper.ValuesMapperTest.StringValuesMapper;
 import org.junit.Assert;
 import org.junit.Test;
 import org.neo4j.driver.v1.Statement;
 
-public class Neo4JMappingStrategyTest {
+public class Neo4JSinkMappingStrategyTest {
 
-	final ValuesMapperTest.StringValuesMapper stringValuesMapper = new ValuesMapperTest().new StringValuesMapper();
+	final DeserializationMapperTest.StringValuesMapper stringValuesMapper = new DeserializationMapperTest().new StringValuesMapper();
 
 	@Test
 	public void testMappingStrategy() {
 
 		String templateStatement = "MATCH (n {id:{key}}) return n";
-		Neo4JSinkMappingStrategy<String, StringValuesMapper> mappingStrategy = new Neo4JSinkMappingStrategy<String, ValuesMapperTest.StringValuesMapper>(
+		Neo4JSinkMappingStrategy<String, DeserializationMapperTest.StringValuesMapper> mappingStrategy = new Neo4JSinkMappingStrategy<String, DeserializationMapperTest.StringValuesMapper>(
 				templateStatement, stringValuesMapper);
 
 		Statement statement = mappingStrategy.getStatement("dummy");

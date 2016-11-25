@@ -13,7 +13,7 @@ import org.junit.Test;
  * @author Alberto De Lazzari
  *
  */
-public class ValuesMapperTest {
+public class DeserializationMapperTest {
 
 	class StringValuesMapper implements DeserializationMapper<String> {
 
