@@ -27,22 +27,22 @@ public class SerializationMapperTest {
 
 			return tuple;
 		}
+	}
+	
+	@Test
+	public void testTuple2SerializationMapper() {
+		TupleSerializationMapper serializationMapper = new TupleSerializationMapper();
 
-		@Test
-		public void testTuple2SerializationMapper() {
-			TupleSerializationMapper serializationMapper = new TupleSerializationMapper();
+		Map<String, Object> record = new HashMap<String, Object>();
+		record.put("i.description", "a record");
+		record.put("i.id", new Integer(10));
 
-			Map<String, Object> record = new HashMap<String, Object>();
-			record.put("i.description", "a record");
-			record.put("i.id", new Integer(10));
+		Tuple2<String, Integer> tuple = serializationMapper.serialize(record);
+		Assert.assertNotNull(tuple);
+		Assert.assertNotNull(tuple.f0);
+		Assert.assertNotNull(tuple.f1);
 
-			Tuple2<String, Integer> tuple = serializationMapper.serialize(record);
-			Assert.assertNotNull(tuple);
-			Assert.assertNotNull(tuple.f0);
-			Assert.assertNotNull(tuple.f1);
-
-			Assert.assertArrayEquals(new String[] { "a record" }, new String[] { tuple.f0 });
-			Assert.assertArrayEquals(new Integer[] { new Integer(10) }, new Integer[] { tuple.f1 });
-		}
+		Assert.assertArrayEquals(new String[] { "a record" }, new String[] { tuple.f0 });
+		Assert.assertArrayEquals(new Integer[] { new Integer(10) }, new Integer[] { tuple.f1 });
 	}
 }

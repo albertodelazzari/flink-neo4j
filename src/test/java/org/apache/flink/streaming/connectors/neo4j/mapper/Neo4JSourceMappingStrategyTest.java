@@ -54,6 +54,7 @@ public class Neo4JSourceMappingStrategyTest {
 
 		//Result result = databaseService.execute(sourceMappingStrategy.getStatement().text());
 		//Assert.assertTrue(result.hasNext());
+		Assert.assertNotNull(sourceMappingStrategy.getStatement());
 
 		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("i.id", new Integer(1));
