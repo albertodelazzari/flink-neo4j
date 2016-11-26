@@ -34,7 +34,7 @@ public class Neo4JDriverWrapper implements Serializable {
 
 	private Map<String, String> parameters;
 	
-	private transient Driver driver;
+	protected transient Driver driver;
 
 	/**
 	 * 

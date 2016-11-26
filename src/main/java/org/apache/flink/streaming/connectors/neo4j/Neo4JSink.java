@@ -30,7 +30,7 @@ public class Neo4JSink<T> extends RichSinkFunction<T> {
 	/**
 	 * Neo4J driver should be not serialized
 	 */
-	private transient Neo4JDriverWrapper driver;
+	protected transient Neo4JDriverWrapper driver;
 
 	/**
 	 * The mapping strategy that we use to map data from Flink to Neo4J

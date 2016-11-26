@@ -3,6 +3,7 @@ package org.apache.flink.streaming.connectors.neo4j;
 import java.util.Map;
 
 import org.mockito.Mockito;
+import org.neo4j.driver.v1.Driver;
 import org.neo4j.driver.v1.Session;
 
 public class Neo4JDriverWrapperMock extends Neo4JDriverWrapper {
@@ -15,16 +16,9 @@ public class Neo4JDriverWrapperMock extends Neo4JDriverWrapper {
 
 	@Override
 	protected void initDriver() {
-		
-	}
+		driver = Mockito.mock(Driver.class);
 
-	@Override
-	public void close() {
-
-	}
-
-	@Override
-	public Session session() {
-		return Mockito.mock(Session.class);
+		Session session = Mockito.mock(Session.class);
+		Mockito.when(driver.session()).thenReturn(session);
 	}
 }
