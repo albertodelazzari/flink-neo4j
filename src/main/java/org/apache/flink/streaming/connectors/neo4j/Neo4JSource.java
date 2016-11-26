@@ -22,18 +22,24 @@ public class Neo4JSource<T> extends RichSourceFunction<T> {
 
 	private static final long serialVersionUID = 1L;
 
-	private transient Neo4JDriverWrapper driver;
+	protected transient Neo4JDriverWrapper driver;
 
 	/**
 	 * The mapping strategy that we use to map data from Flink to Neo4J
 	 * 
 	 * @see Neo4JSourceMappingStrategy
 	 */
-	private Neo4JSourceMappingStrategy<T, SerializationMapper<T>> sourceMappingStrategy;
+	private Neo4JSourceMappingStrategy<T, SerializationMapper<T>> mappingStrategy;
 
 	private Map<String, String> config;
 
-	public Neo4JSource(final Map<String, String> config) {
+	/**
+	 * 
+	 * @param mappingStrategy
+	 * @param config
+	 */
+	public Neo4JSource(final Neo4JSourceMappingStrategy<T, SerializationMapper<T>> mappingStrategy, final Map<String, String> config) {
+		this.mappingStrategy = mappingStrategy;
 		this.config = config;
 	}
 
@@ -53,15 +59,15 @@ public class Neo4JSource<T> extends RichSourceFunction<T> {
 
 	@Override
 	public void run(SourceContext<T> sourceContext) throws Exception {
-		Statement queryStatement = sourceMappingStrategy.getStatement();
+		Statement queryStatement = mappingStrategy.getStatement();
 		Session session = driver.session();
 
 		// We should use a statement with parameters
 		StatementResult result = session.run(queryStatement);
 		while (result.hasNext()) {
 			Record record = result.next();
-			
-			T item = sourceMappingStrategy.map(record);
+
+			T item = mappingStrategy.map(record);
 			sourceContext.collect(item);
 		}
 	}

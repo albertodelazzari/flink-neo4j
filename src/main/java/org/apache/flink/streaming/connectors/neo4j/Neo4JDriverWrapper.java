@@ -37,8 +37,10 @@ public class Neo4JDriverWrapper implements Serializable {
 	protected transient Driver driver;
 
 	/**
+	 * The defaut constructor.
+	 * Always pass the connection url, username and password
 	 * 
-	 * @param parameters the connnection parameters
+	 * @param parameters the connection parameters
 	 */
 	public Neo4JDriverWrapper(final Map<String, String> parameters) {
 		// We want to ensure that all the mandatory parameters are defined
@@ -55,7 +57,7 @@ public class Neo4JDriverWrapper implements Serializable {
 
 	/**
 	 * Init the internal Neo4J driver
-	 * 
+	 * @see org.neo4j.driver.v1.Driver
 	 */
 	protected void initDriver() {
 		String url = parameters.get(URL);
@@ -72,6 +74,7 @@ public class Neo4JDriverWrapper implements Serializable {
 
 	/**
 	 * Establish a session
+	 * @see org.neo4j.driver.v1.Session
 	 * 
 	 * @return a Neo4J session
 	 */
@@ -80,7 +83,7 @@ public class Neo4JDriverWrapper implements Serializable {
 	}
 	
 	/**
-	 * Call all the resources assigned to the internal No4J Driver
+	 * Close all the resources assigned to the internal Neo4J Driver
 	 * @see org.neo4j.driver.v1.Driver
 	 */
 	public void close(){

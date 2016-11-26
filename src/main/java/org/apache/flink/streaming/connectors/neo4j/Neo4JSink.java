@@ -87,7 +87,7 @@ public class Neo4JSink<T> extends RichSinkFunction<T> {
 	 */
 	@Override
 	public void invoke(T element) throws Exception {
-		Statement queryStatement = this.mappingStrategy.getStatement(element);
+		Statement queryStatement = getMappingStrategy().getStatement(element);
 		Session session = driver.session();
 		LOGGER.debug("running {}", queryStatement.text());
 		session.run(queryStatement);
