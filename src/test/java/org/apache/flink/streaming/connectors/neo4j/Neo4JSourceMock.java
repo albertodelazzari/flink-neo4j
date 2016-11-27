@@ -21,7 +21,7 @@ import org.neo4j.driver.v1.StatementResult;
  * @author nicolacamillo
  *
  */
-public abstract class Neo4JSourceMock<T> extends Neo4JSource<T> {
+public class Neo4JSourceMock<T> extends Neo4JSource<T> {
 
 	private static final long serialVersionUID = 1L;
 

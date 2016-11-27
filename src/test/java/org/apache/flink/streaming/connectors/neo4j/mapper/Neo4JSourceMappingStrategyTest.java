@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.flink.api.java.tuple.Tuple2;
+import org.apache.flink.streaming.connectors.neo4j.mapper.SerializationMapperTest.TupleSerializationMapper;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -15,11 +16,27 @@ public class Neo4JSourceMappingStrategyTest {
 
 	final SerializationMapperTest.TupleSerializationMapper serializationMapper = new SerializationMapperTest().new TupleSerializationMapper();
 
+	class Neo4JSourceMappingStrategyTuple extends
+			Neo4JSourceMappingStrategy<Tuple2<String, Integer>, SerializationMapperTest.TupleSerializationMapper> {
+
+		private static final long serialVersionUID = 1L;
+
+		public Neo4JSourceMappingStrategyTuple(String templateStatement, TupleSerializationMapper mapper) {
+			super(templateStatement, mapper);
+		}
+
+		@SuppressWarnings("unchecked")
+		@Override
+		public Class<Tuple2<String, Integer>> getType() {
+			return (Class<Tuple2<String, Integer>>) new Tuple2<String, Integer>().getClass();
+		}
+	}
+
 	@Test
 	public void testMappingStrategy() {
 		String templateStatement = "MATCH (i:Item) return i.id, i.description";
 
-		Neo4JSourceMappingStrategy<Tuple2<String, Integer>, SerializationMapperTest.TupleSerializationMapper> sourceMappingStrategy = new Neo4JSourceMappingStrategy<Tuple2<String, Integer>, SerializationMapperTest.TupleSerializationMapper>(
+		Neo4JSourceMappingStrategy<Tuple2<String, Integer>, SerializationMapperTest.TupleSerializationMapper> sourceMappingStrategy = new Neo4JSourceMappingStrategyTuple(
 				templateStatement, serializationMapper);
 
 		Assert.assertNotNull(sourceMappingStrategy.getStatement());

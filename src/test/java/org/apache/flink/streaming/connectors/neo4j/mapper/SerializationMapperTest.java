@@ -27,12 +27,6 @@ public class SerializationMapperTest {
 
 			return tuple;
 		}
-
-		@SuppressWarnings("unchecked")
-		@Override
-		public Class<Tuple2<String, Integer>> getType() {
-			return (Class<Tuple2<String, Integer>>) new Tuple2<String, Integer>().getClass();
-		}
 	}
 
 	@Test

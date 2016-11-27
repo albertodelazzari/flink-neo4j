@@ -75,8 +75,13 @@ public class Neo4JSource<T> extends RichSourceFunction<T> implements ResultTypeQ
 		}
 	}
 
-	@SuppressWarnings("unchecked")
+	/**
+	 * @see ResultTypeQueryable
+	 * 
+	 * @return the type information
+	 */
+	@Override
 	public TypeInformation<T> getProducedType() {
-		return (TypeInformation<T>) TypeInformation.of(mappingStrategy.getClass());
+		return (TypeInformation<T>) TypeInformation.of(mappingStrategy.getType());
 	}
 }
