@@ -17,7 +17,7 @@ public class Neo4JDriverWrapperMock extends Neo4JDriverWrapper {
 	@Override
 	protected void initDriver() {
 		driver = Mockito.mock(Driver.class);
-
+		
 		Session session = Mockito.mock(Session.class);
 		Mockito.when(driver.session()).thenReturn(session);
 	}

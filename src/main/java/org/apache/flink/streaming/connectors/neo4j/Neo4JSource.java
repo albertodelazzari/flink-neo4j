@@ -5,6 +5,8 @@ package org.apache.flink.streaming.connectors.neo4j;
 
 import java.util.Map;
 
+import org.apache.flink.api.common.typeinfo.TypeInformation;
+import org.apache.flink.api.java.typeutils.ResultTypeQueryable;
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.streaming.api.functions.source.RichSourceFunction;
 import org.apache.flink.streaming.connectors.neo4j.mapper.Neo4JSourceMappingStrategy;
@@ -18,7 +20,7 @@ import org.neo4j.driver.v1.StatementResult;
  * @author Alberto De Lazzari
  *
  */
-public class Neo4JSource<T> extends RichSourceFunction<T> {
+public abstract class Neo4JSource<T> extends RichSourceFunction<T> implements ResultTypeQueryable<T> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -38,7 +40,8 @@ public class Neo4JSource<T> extends RichSourceFunction<T> {
 	 * @param mappingStrategy
 	 * @param config
 	 */
-	public Neo4JSource(final Neo4JSourceMappingStrategy<T, SerializationMapper<T>> mappingStrategy, final Map<String, String> config) {
+	public Neo4JSource(final Neo4JSourceMappingStrategy<T, SerializationMapper<T>> mappingStrategy,
+			final Map<String, String> config) {
 		this.mappingStrategy = mappingStrategy;
 		this.config = config;
 	}
@@ -71,4 +74,6 @@ public class Neo4JSource<T> extends RichSourceFunction<T> {
 			sourceContext.collect(item);
 		}
 	}
+
+	public abstract TypeInformation<T> getProducedType(); 
 }
