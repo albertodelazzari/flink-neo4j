@@ -6,7 +6,6 @@ import java.util.Map;
  * @author Alberto De Lazzari
  *
  */
-@FunctionalInterface
 public interface SerializationMapper<T> extends Mapper<T> {
 	
 	/**
@@ -17,4 +16,6 @@ public interface SerializationMapper<T> extends Mapper<T> {
 	 * @return an item of type T that is a transformation of a record into an item T
 	 */
 	public T serialize(Map<String, Object> record);
+	
+	public Class<T> getType();
 }

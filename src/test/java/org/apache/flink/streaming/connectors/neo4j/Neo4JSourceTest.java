@@ -68,5 +68,11 @@ public class Neo4JSourceTest implements Serializable {
 		public String serialize(Map<String, Object> record) {
 			return record.get("i.description").toString();
 		}
+
+		@Override
+		public Class<String> getType() {
+			return String.class;
+		}
+
 	}
 }

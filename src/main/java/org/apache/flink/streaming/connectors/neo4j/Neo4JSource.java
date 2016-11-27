@@ -20,7 +20,7 @@ import org.neo4j.driver.v1.StatementResult;
  * @author Alberto De Lazzari
  *
  */
-public abstract class Neo4JSource<T> extends RichSourceFunction<T> implements ResultTypeQueryable<T> {
+public class Neo4JSource<T> extends RichSourceFunction<T> implements ResultTypeQueryable<T> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -75,5 +75,8 @@ public abstract class Neo4JSource<T> extends RichSourceFunction<T> implements Re
 		}
 	}
 
-	public abstract TypeInformation<T> getProducedType(); 
+	@SuppressWarnings("unchecked")
+	public TypeInformation<T> getProducedType() {
+		return (TypeInformation<T>) TypeInformation.of(mappingStrategy.getClass());
+	}
 }
