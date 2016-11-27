@@ -18,7 +18,7 @@ import org.neo4j.driver.v1.Statement;
 import org.neo4j.driver.v1.StatementResult;
 
 /**
- * @author nicolacamillo
+ * @author Alberto De Lazzari
  *
  */
 public class Neo4JSourceMock<T> extends Neo4JSource<T> {
