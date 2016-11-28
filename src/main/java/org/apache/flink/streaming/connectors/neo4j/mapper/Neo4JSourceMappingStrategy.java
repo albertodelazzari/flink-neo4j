@@ -5,7 +5,7 @@ import java.io.Serializable;
 import org.neo4j.driver.v1.Record;
 import org.neo4j.driver.v1.Statement;
 
-public abstract class Neo4JSourceMappingStrategy<T, M extends SerializationMapper<T>> implements Serializable {
+public class Neo4JSourceMappingStrategy<T, M extends SerializationMapper<T>> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -46,6 +46,4 @@ public abstract class Neo4JSourceMappingStrategy<T, M extends SerializationMappe
 	public T map(Record record) {
 		return this.mapper.serialize(record.asMap());
 	}
-	
-	public abstract Class<T> getType();
 }

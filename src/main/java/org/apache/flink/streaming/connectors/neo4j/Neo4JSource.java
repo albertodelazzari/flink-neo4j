@@ -15,6 +15,8 @@ import org.neo4j.driver.v1.Record;
 import org.neo4j.driver.v1.Session;
 import org.neo4j.driver.v1.Statement;
 import org.neo4j.driver.v1.StatementResult;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author Alberto De Lazzari
@@ -23,6 +25,8 @@ import org.neo4j.driver.v1.StatementResult;
 public class Neo4JSource<T> extends RichSourceFunction<T> implements ResultTypeQueryable<T> {
 
 	private static final long serialVersionUID = 1L;
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(Neo4JSource.class);
 
 	protected transient Neo4JDriverWrapper driver;
 
@@ -66,6 +70,7 @@ public class Neo4JSource<T> extends RichSourceFunction<T> implements ResultTypeQ
 		Session session = driver.session();
 
 		// We should use a statement with parameters
+		LOGGER.debug("running statement {}", queryStatement.text());
 		StatementResult result = session.run(queryStatement);
 		while (result.hasNext()) {
 			Record record = result.next();
@@ -80,8 +85,9 @@ public class Neo4JSource<T> extends RichSourceFunction<T> implements ResultTypeQ
 	 * 
 	 * @return the type information
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public TypeInformation<T> getProducedType() {
-		return (TypeInformation<T>) TypeInformation.of(mappingStrategy.getType());
+		return TypeInformation.of((Class<T>) this.getClass().getTypeParameters()[0].getClass());
 	}
 }

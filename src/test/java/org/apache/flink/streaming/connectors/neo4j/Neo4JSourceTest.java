@@ -60,11 +60,5 @@ public class Neo4JSourceTest implements Serializable {
 		public Neo4JSourceMappingStrategyString(String templateStatement, SerializationMapper<String> mapper) {
 			super(templateStatement, mapper);
 		}
-
-		@Override
-		public Class<String> getType() {
-			return String.class;
-		}
-
 	}
 }
