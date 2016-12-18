@@ -48,9 +48,9 @@ public class Neo4JInputFormat<T> extends RichInputFormat<T, InputSplit> implemen
 
 	private Neo4JSourceMappingStrategy<T, SerializationMapper<T>> mappingStrategy;
 
-	protected StatementResult result;
+	protected transient StatementResult result;
 
-	protected Session session;
+	protected transient Session session;
 
 	/**
 	 * The default constructor
