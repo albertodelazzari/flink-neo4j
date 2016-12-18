@@ -4,11 +4,13 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.flink.mapping.neo4j.Neo4JSourceMappingStrategy;
+import org.apache.flink.mapping.neo4j.Neo4JSourceMappingStrategyString;
+import org.apache.flink.mapping.neo4j.SerializationMapper;
+import org.apache.flink.mapping.neo4j.StringSerializationMapper;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.functions.sink.PrintSinkFunction;
-import org.apache.flink.streaming.connectors.neo4j.mapper.Neo4JSourceMappingStrategy;
-import org.apache.flink.streaming.connectors.neo4j.mapper.SerializationMapper;
 import org.junit.Test;
 
 public class Neo4JSourceTest implements Serializable {

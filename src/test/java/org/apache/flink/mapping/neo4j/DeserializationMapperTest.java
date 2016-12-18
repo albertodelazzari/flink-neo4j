@@ -1,11 +1,12 @@
 /**
  * 
  */
-package org.apache.flink.streaming.connectors.neo4j.mapper;
+package org.apache.flink.mapping.neo4j;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.flink.mapping.neo4j.DeserializationMapper;
 import org.junit.Assert;
 import org.junit.Test;
 

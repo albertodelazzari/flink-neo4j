@@ -6,10 +6,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.flink.api.java.tuple.Tuple2;
+import org.apache.flink.mapping.neo4j.DeserializationMapper;
+import org.apache.flink.mapping.neo4j.Neo4JSinkMappingStrategy;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import org.apache.flink.streaming.connectors.neo4j.mapper.DeserializationMapper;
-import org.apache.flink.streaming.connectors.neo4j.mapper.Neo4JSinkMappingStrategy;
 import org.junit.Test;
 
 public class Neo4JSinkTest implements Serializable {

@@ -1,7 +1,8 @@
-package org.apache.flink.streaming.connectors.neo4j.mapper;
+package org.apache.flink.mapping.neo4j;
 
 import java.util.Collection;
 
+import org.apache.flink.mapping.neo4j.Neo4JSinkMappingStrategy;
 import org.junit.Assert;
 import org.junit.Test;
 import org.neo4j.driver.v1.Statement;

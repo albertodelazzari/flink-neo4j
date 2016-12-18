@@ -1,7 +1,7 @@
-package org.apache.flink.streaming.connectors.neo4j;
+package org.apache.flink.mapping.neo4j;
 
-import org.apache.flink.streaming.connectors.neo4j.mapper.Neo4JSourceMappingStrategy;
-import org.apache.flink.streaming.connectors.neo4j.mapper.SerializationMapper;
+import org.apache.flink.mapping.neo4j.Neo4JSourceMappingStrategy;
+import org.apache.flink.mapping.neo4j.SerializationMapper;
 
 public class Neo4JSourceMappingStrategyString extends Neo4JSourceMappingStrategy<String, SerializationMapper<String>> {
 

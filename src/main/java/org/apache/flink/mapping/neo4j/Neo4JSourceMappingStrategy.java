@@ -1,4 +1,4 @@
-package org.apache.flink.streaming.connectors.neo4j.mapper;
+package org.apache.flink.mapping.neo4j;
 
 import java.io.Serializable;
 

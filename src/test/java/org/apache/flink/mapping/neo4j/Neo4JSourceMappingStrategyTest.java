@@ -1,10 +1,11 @@
-package org.apache.flink.streaming.connectors.neo4j.mapper;
+package org.apache.flink.mapping.neo4j;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.flink.api.java.tuple.Tuple2;
-import org.apache.flink.streaming.connectors.neo4j.mapper.SerializationMapperTest.TupleSerializationMapper;
+import org.apache.flink.mapping.neo4j.Neo4JSourceMappingStrategy;
+import org.apache.flink.mapping.neo4j.SerializationMapperTest.TupleSerializationMapper;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;

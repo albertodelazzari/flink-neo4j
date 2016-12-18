@@ -1,4 +1,4 @@
-package org.apache.flink.streaming.connectors.neo4j.mapper;
+package org.apache.flink.mapping.neo4j;
 
 import java.util.Map;
 
@@ -7,7 +7,7 @@ import java.util.Map;
  *
  */
 @FunctionalInterface
-public interface SerializationMapper<T> extends Mapper<T> {
+public interface SerializationMapper<T> extends Mapper {
 	
 	/**
 	 * 

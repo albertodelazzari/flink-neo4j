@@ -7,8 +7,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.flink.configuration.Configuration;
-import org.apache.flink.streaming.connectors.neo4j.mapper.Neo4JSourceMappingStrategy;
-import org.apache.flink.streaming.connectors.neo4j.mapper.SerializationMapper;
+import org.apache.flink.mapping.neo4j.Neo4JSourceMappingStrategy;
+import org.apache.flink.mapping.neo4j.SerializationMapper;
 import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;

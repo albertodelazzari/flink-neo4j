@@ -1,8 +1,8 @@
-package org.apache.flink.streaming.connectors.neo4j;
+package org.apache.flink.mapping.neo4j;
 
 import java.util.Map;
 
-import org.apache.flink.streaming.connectors.neo4j.mapper.SerializationMapper;
+import org.apache.flink.mapping.neo4j.SerializationMapper;
 
 public class StringSerializationMapper implements SerializationMapper<String> {
 

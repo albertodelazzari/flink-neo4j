@@ -6,10 +6,10 @@ package org.apache.flink.batch.neo4j;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.flink.mapping.neo4j.Neo4JSourceMappingStrategy;
+import org.apache.flink.mapping.neo4j.SerializationMapper;
 import org.apache.flink.streaming.connectors.neo4j.Neo4JDriverWrapper;
 import org.apache.flink.streaming.connectors.neo4j.Neo4JDriverWrapperMock;
-import org.apache.flink.streaming.connectors.neo4j.mapper.Neo4JSourceMappingStrategy;
-import org.apache.flink.streaming.connectors.neo4j.mapper.SerializationMapper;
 import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;

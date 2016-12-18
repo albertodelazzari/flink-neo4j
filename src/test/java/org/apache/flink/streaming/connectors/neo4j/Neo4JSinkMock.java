@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.flink.configuration.Configuration;
-import org.apache.flink.streaming.connectors.neo4j.mapper.DeserializationMapper;
-import org.apache.flink.streaming.connectors.neo4j.mapper.Neo4JSinkMappingStrategy;
+import org.apache.flink.mapping.neo4j.DeserializationMapper;
+import org.apache.flink.mapping.neo4j.Neo4JSinkMappingStrategy;
 
 public class Neo4JSinkMock<T> extends Neo4JSink<T> {
 
