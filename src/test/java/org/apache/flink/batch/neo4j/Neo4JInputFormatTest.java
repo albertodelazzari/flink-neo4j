@@ -30,7 +30,7 @@ public class Neo4JInputFormatTest {
 	private static final String DEFAULT_PASSWORD = "password";
 
 	@Test
-	public void testInputFormat() throws Exception {
+	public void testInputFormatCount() throws Exception {
 		ExecutionEnvironment env = ExecutionEnvironment.createLocalEnvironment();
 
 		Map<String, String> config = new HashMap<String, String>();

@@ -40,9 +40,12 @@ public class Neo4JSource<T> extends RichSourceFunction<T> implements ResultTypeQ
 	private Map<String, String> config;
 
 	/**
+	 * Default source constructor
 	 * 
 	 * @param mappingStrategy
-	 * @param config
+	 *            a mapping strategy that will be used to map stream data from
+	 *            Neo4J data
+	 * @param config the connection configurations for Neo4J
 	 */
 	public Neo4JSource(final Neo4JSourceMappingStrategy<T, SerializationMapper<T>> mappingStrategy,
 			final Map<String, String> config) {
@@ -78,7 +81,7 @@ public class Neo4JSource<T> extends RichSourceFunction<T> implements ResultTypeQ
 			T item = mappingStrategy.map(record);
 			sourceContext.collect(item);
 		}
-		
+
 		session.close();
 	}
 

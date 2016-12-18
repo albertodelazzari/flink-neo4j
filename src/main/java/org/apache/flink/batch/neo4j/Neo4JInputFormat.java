@@ -72,7 +72,7 @@ public class Neo4JInputFormat<T> extends RichInputFormat<T, InputSplit> implemen
 	 * and a Session that will be used to run cypher queries
 	 * 
 	 * @see Neo4JDriverWrapper
-	 * @see Session
+	 * @see org.neo4j.driver.v1.Session
 	 */
 	@Override
 	public void openInputFormat() {
@@ -84,7 +84,7 @@ public class Neo4JInputFormat<T> extends RichInputFormat<T, InputSplit> implemen
 	 * This method override the super method. It closes the Driver disposing all
 	 * the resources
 	 * 
-	 * @see Driver
+	 * @see org.neo4j.driver.v1.Driver
 	 */
 	@Override
 	public void closeInputFormat() {
