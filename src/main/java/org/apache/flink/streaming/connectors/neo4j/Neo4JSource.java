@@ -78,6 +78,8 @@ public class Neo4JSource<T> extends RichSourceFunction<T> implements ResultTypeQ
 			T item = mappingStrategy.map(record);
 			sourceContext.collect(item);
 		}
+		
+		session.close();
 	}
 
 	/**
