@@ -6,13 +6,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.flink.api.java.tuple.Tuple2;
+import org.apache.flink.embedded.neo4j.Neo4JBaseEmbeddedTest;
 import org.apache.flink.mapping.neo4j.DeserializationMapper;
 import org.apache.flink.mapping.neo4j.Neo4JSinkMappingStrategy;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.junit.Test;
 
-public class Neo4JSinkTest implements Serializable {
+public class Neo4JSinkTest extends Neo4JBaseEmbeddedTest implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 

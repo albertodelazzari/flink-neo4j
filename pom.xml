@@ -98,7 +98,7 @@
 			<scope>test</scope>
 		</dependency>
 		<!-- It will be useful but Neo4J InternalSession is not serializable -->
-		<!--  
+		  
 		<dependency>
             <groupId>org.neo4j.test</groupId>
             <artifactId>neo4j-harness</artifactId>
@@ -111,7 +111,7 @@
             	</exclusion>
             </exclusions>
 		</dependency>
-		-->
+		
 	</dependencies>
 
 	<build>

@@ -8,6 +8,7 @@ import org.apache.flink.api.common.typeinfo.BasicTypeInfo;
 import org.apache.flink.api.java.ExecutionEnvironment;
 import org.apache.flink.api.java.io.LocalCollectionOutputFormat;
 import org.apache.flink.api.java.operators.DataSource;
+import org.apache.flink.embedded.neo4j.Neo4JBaseEmbeddedTest;
 import org.apache.flink.hadoop.shaded.com.google.common.collect.Lists;
 import org.apache.flink.mapping.neo4j.Neo4JSourceMappingStrategy;
 import org.apache.flink.mapping.neo4j.Neo4JSourceMappingStrategyString;
@@ -19,7 +20,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Neo4JInputFormatTest {
+public class Neo4JInputFormatTest extends Neo4JBaseEmbeddedTest {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(Neo4JInputFormatTest.class);
 

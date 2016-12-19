@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.flink.embedded.neo4j.Neo4JBaseEmbeddedTest;
 import org.apache.flink.mapping.neo4j.Neo4JSourceMappingStrategy;
 import org.apache.flink.mapping.neo4j.Neo4JSourceMappingStrategyString;
 import org.apache.flink.mapping.neo4j.SerializationMapper;
@@ -13,7 +14,7 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.functions.sink.PrintSinkFunction;
 import org.junit.Test;
 
-public class Neo4JSourceTest implements Serializable {
+public class Neo4JSourceTest extends Neo4JBaseEmbeddedTest implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
