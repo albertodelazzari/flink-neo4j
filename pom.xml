@@ -97,21 +97,19 @@
 			<version>1.10.19</version>
 			<scope>test</scope>
 		</dependency>
-		<!-- It will be useful but Neo4J InternalSession is not serializable -->
-		  
-		<dependency>
-            <groupId>org.neo4j.test</groupId>
-            <artifactId>neo4j-harness</artifactId>
-            <version>${neo4j.version}</version>
-            <scope>test</scope>
-            <exclusions>
-            	<exclusion>
-            		<groupId>io.netty</groupId>
-            		<artifactId>netty-all</artifactId>
-            	</exclusion>
-            </exclusions>
-		</dependency>
 		
+		<dependency>
+			<groupId>org.neo4j.test</groupId>
+			<artifactId>neo4j-harness</artifactId>
+			<version>${neo4j.version}</version>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>io.netty</groupId>
+					<artifactId>netty-all</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 	</dependencies>
 
 	<build>

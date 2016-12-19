@@ -32,7 +32,7 @@ public class Neo4JDriverWrapperTest extends Neo4JBaseEmbeddedTest {
 
 		StatementResult result = session.run("MATCH (n) return n");
 		assertNotNull(result);
-		
+		assertTrue(result.hasNext()); 
 		session.close();
 		assertTrue(!session.isOpen());
 	}
