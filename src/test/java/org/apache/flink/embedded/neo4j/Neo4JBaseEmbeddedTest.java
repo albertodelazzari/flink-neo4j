@@ -29,7 +29,7 @@ public class Neo4JBaseEmbeddedTest {
 	@Before
 	public void init() {
 		neo4JDriver = GraphDatabase.driver(neo4jRule.boltURI(),
-				Config.build().withEncryptionLevel(Config.EncryptionLevel.NONE).toConfig());
+				Config.build().withSessionLivenessCheckTimeout(2000).withEncryptionLevel(Config.EncryptionLevel.NONE).toConfig());
 	
 		Map<String, String> config = new HashMap<String, String>();
 		config.put(Neo4JDriverWrapper.URL, neo4jRule.boltURI().toString());
