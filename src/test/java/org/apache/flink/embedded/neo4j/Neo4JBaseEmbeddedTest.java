@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.flink.streaming.connectors.neo4j.Neo4JDriverWrapper;
 import org.apache.flink.streaming.connectors.neo4j.Neo4JDriverWrapperMock;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.ClassRule;
 import org.neo4j.driver.v1.Config;
@@ -38,4 +39,8 @@ public class Neo4JBaseEmbeddedTest {
 		driverWrapper = new Neo4JDriverWrapperMock(config, neo4JDriver);
 	}
 
+	@After
+	public void tearDown(){
+		neo4JDriver.close();
+	}
 }

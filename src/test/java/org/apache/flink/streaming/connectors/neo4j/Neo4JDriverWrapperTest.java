@@ -9,6 +9,7 @@ import java.util.Map;
 import org.apache.flink.embedded.neo4j.Neo4JBaseEmbeddedTest;
 import org.junit.Test;
 import org.neo4j.driver.v1.Session;
+import org.neo4j.driver.v1.StatementResult;
 
 /**
  * 
@@ -29,7 +30,9 @@ public class Neo4JDriverWrapperTest extends Neo4JBaseEmbeddedTest {
 		Session session = driverWrapper.session();
 		assertNotNull(session);
 
-		session.run("MATCH (n) return n");
+		StatementResult result = session.run("MATCH (n) return n");
+		assertNotNull(result);
+		
 		session.close();
 		assertTrue(!session.isOpen());
 	}
