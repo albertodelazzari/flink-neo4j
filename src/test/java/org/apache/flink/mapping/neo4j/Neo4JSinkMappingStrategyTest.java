@@ -9,13 +9,13 @@ import org.neo4j.driver.v1.Statement;
 
 public class Neo4JSinkMappingStrategyTest {
 
-	final DeserializationMapperTest.StringValuesMapper stringValuesMapper = new DeserializationMapperTest().new StringValuesMapper();
+	final StringValuesMapper stringValuesMapper = new StringValuesMapper();
 
 	@Test
 	public void testMappingStrategy() {
 
 		String templateStatement = "MATCH (n {id:{key}}) return n";
-		Neo4JSinkMappingStrategy<String, DeserializationMapperTest.StringValuesMapper> mappingStrategy = new Neo4JSinkMappingStrategy<String, DeserializationMapperTest.StringValuesMapper>(
+		Neo4JSinkMappingStrategy<String, StringValuesMapper> mappingStrategy = new Neo4JSinkMappingStrategy<String, StringValuesMapper>(
 				templateStatement, stringValuesMapper);
 
 		Statement statement = mappingStrategy.getStatement("dummy");

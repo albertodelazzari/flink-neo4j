@@ -56,8 +56,8 @@ public class Neo4JInputFormat<T> extends RichInputFormat<T, InputSplit> implemen
 	 * The default constructor
 	 * 
 	 * @param mappingStrategy
-	 *            a mapping strategy that will be used to map stream data to
-	 *            Neo4J data
+	 *            a mapping strategy that will be used to map batch data from
+	 *            Neo4J 
 	 * @param config
 	 *            the connection configurations for Neo4J
 	 */

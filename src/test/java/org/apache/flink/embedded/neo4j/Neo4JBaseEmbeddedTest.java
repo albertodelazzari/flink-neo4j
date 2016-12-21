@@ -15,6 +15,12 @@ import org.neo4j.harness.junit.Neo4jRule;
 
 public class Neo4JBaseEmbeddedTest {
 
+	public static final String DEFAULT_URL = "bolt://localhost:7687";
+
+	public static final String DEFAULT_USERNAME = "neo4j";
+
+	public static final String DEFAULT_PASSWORD = "password";
+	
 	@ClassRule
 	public static Neo4jRule neo4jRule;
 	

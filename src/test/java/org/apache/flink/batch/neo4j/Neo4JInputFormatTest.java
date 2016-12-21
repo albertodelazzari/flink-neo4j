@@ -24,12 +24,6 @@ public class Neo4JInputFormatTest extends Neo4JBaseEmbeddedTest {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(Neo4JInputFormatTest.class);
 
-	private static final String DEFAULT_URL = "bolt://localhost:7687";
-
-	private static final String DEFAULT_USERNAME = "neo4j";
-
-	private static final String DEFAULT_PASSWORD = "password";
-
 	@Test
 	public void testInputFormatCount() throws Exception {
 		ExecutionEnvironment env = ExecutionEnvironment.createLocalEnvironment();
