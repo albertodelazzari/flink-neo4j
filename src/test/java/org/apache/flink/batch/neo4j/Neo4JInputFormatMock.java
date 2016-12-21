@@ -28,4 +28,9 @@ public class Neo4JInputFormatMock<T> extends Neo4JInputFormat<T> {
 		driver = Neo4JBaseEmbeddedTest.driverWrapper;
 		session = driver.session();
 	}
+	
+	@Override
+	public void closeInputFormat() {
+		// Do nothing, the driver will be closed by the test class
+	}
 }

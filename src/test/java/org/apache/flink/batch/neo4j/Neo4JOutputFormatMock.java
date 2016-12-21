@@ -36,4 +36,13 @@ public class Neo4JOutputFormatMock<T> extends Neo4JOutputFormat<T> {
 		session.run("MATCH (n) return n").list();
 		driver.session().run("MATCH (n) return n").list();
 	}
+	
+	@Override
+	public void close() throws IOException {
+		// The driver will be close by the test class
+		if (session != null && session.isOpen()) {
+			session.close();
+		}
+
+	}
 }
