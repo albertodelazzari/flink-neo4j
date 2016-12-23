@@ -6,7 +6,7 @@ package org.apache.flink.batch.neo4j;
 import java.util.Map;
 
 import org.apache.flink.embedded.neo4j.Neo4JBaseEmbeddedTest;
-import org.apache.flink.mapping.neo4j.Neo4JSourceMappingStrategy;
+import org.apache.flink.mapping.neo4j.Neo4JSerializationMappingStrategy;
 import org.apache.flink.mapping.neo4j.SerializationMapper;
 
 /**
@@ -17,7 +17,7 @@ public class Neo4JInputFormatMock<T> extends Neo4JInputFormat<T> {
 
 	private static final long serialVersionUID = 1L;
 
-	public Neo4JInputFormatMock(Neo4JSourceMappingStrategy<T, SerializationMapper<T>> mappingStrategy,
+	public Neo4JInputFormatMock(Neo4JSerializationMappingStrategy<T, SerializationMapper<T>> mappingStrategy,
 			Map<String, String> config) {
 		super(mappingStrategy, config);
 	}

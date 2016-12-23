@@ -8,7 +8,7 @@ import java.util.Map;
 
 import org.apache.flink.embedded.neo4j.Neo4JBaseEmbeddedTest;
 import org.apache.flink.mapping.neo4j.DeserializationMapper;
-import org.apache.flink.mapping.neo4j.Neo4JSinkMappingStrategy;
+import org.apache.flink.mapping.neo4j.Neo4JDeserializationMappingStrategy;
 
 /**
  * @author Alberto De Lazzari
@@ -18,7 +18,7 @@ public class Neo4JOutputFormatMock<T> extends Neo4JOutputFormat<T> {
 
 	private static final long serialVersionUID = 1L;
 
-	public Neo4JOutputFormatMock(Neo4JSinkMappingStrategy<T, DeserializationMapper<T>> mappingStrategy,
+	public Neo4JOutputFormatMock(Neo4JDeserializationMappingStrategy<T, DeserializationMapper<T>> mappingStrategy,
 			Map<String, String> config) {
 		super(mappingStrategy, config);
 	}

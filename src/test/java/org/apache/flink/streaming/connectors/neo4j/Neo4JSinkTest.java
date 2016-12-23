@@ -8,7 +8,7 @@ import java.util.Map;
 import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.embedded.neo4j.Neo4JBaseEmbeddedTest;
 import org.apache.flink.mapping.neo4j.DeserializationMapper;
-import org.apache.flink.mapping.neo4j.Neo4JSinkMappingStrategy;
+import org.apache.flink.mapping.neo4j.Neo4JDeserializationMappingStrategy;
 import org.apache.flink.mapping.neo4j.SimpleValuesMapper;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
@@ -45,7 +45,7 @@ public class Neo4JSinkTest extends Neo4JBaseEmbeddedTest implements Serializable
 		config.put(Neo4JDriverWrapper.PASSWORD_PARAM, DEFAULT_PASSWORD);
 
 		DeserializationMapper<Tuple2<String, Integer>> mapper = new SimpleValuesMapper();
-		Neo4JSinkMappingStrategy<Tuple2<String, Integer>, DeserializationMapper<Tuple2<String, Integer>>> mappingStrategy = new Neo4JSinkMappingStrategy<Tuple2<String, Integer>, DeserializationMapper<Tuple2<String, Integer>>>(
+		Neo4JDeserializationMappingStrategy<Tuple2<String, Integer>, DeserializationMapper<Tuple2<String, Integer>>> mappingStrategy = new Neo4JDeserializationMappingStrategy<Tuple2<String, Integer>, DeserializationMapper<Tuple2<String, Integer>>>(
 				statementTemplate, mapper);
 
 		Neo4JSinkMock<Tuple2<String, Integer>> neo4jSink = new Neo4JSinkMock<Tuple2<String, Integer>>(mappingStrategy,

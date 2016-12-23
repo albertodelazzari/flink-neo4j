@@ -12,7 +12,7 @@ import org.apache.flink.api.java.operators.DataSource;
 import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.embedded.neo4j.Neo4JBaseEmbeddedTest;
 import org.apache.flink.mapping.neo4j.DeserializationMapper;
-import org.apache.flink.mapping.neo4j.Neo4JSinkMappingStrategy;
+import org.apache.flink.mapping.neo4j.Neo4JDeserializationMappingStrategy;
 import org.apache.flink.mapping.neo4j.SimpleValuesMapper;
 import org.apache.flink.streaming.connectors.neo4j.Neo4JDriverWrapper;
 import org.junit.Test;
@@ -46,7 +46,7 @@ public class Neo4JOutputFormatTest extends Neo4JBaseEmbeddedTest {
 
 		String statementTemplate = "MERGE (tuple:Tuple {name: {t1}, index: {t2}}) RETURN tuple";
 		DeserializationMapper<Tuple2<String, Integer>> mapper = new SimpleValuesMapper();
-		Neo4JSinkMappingStrategy<Tuple2<String, Integer>, DeserializationMapper<Tuple2<String, Integer>>> mappingStrategy = new Neo4JSinkMappingStrategy<Tuple2<String, Integer>, DeserializationMapper<Tuple2<String, Integer>>>(
+		Neo4JDeserializationMappingStrategy<Tuple2<String, Integer>, DeserializationMapper<Tuple2<String, Integer>>> mappingStrategy = new Neo4JDeserializationMappingStrategy<Tuple2<String, Integer>, DeserializationMapper<Tuple2<String, Integer>>>(
 				statementTemplate, mapper);
 
 		Neo4JOutputFormat<Tuple2<String, Integer>> outputFormat = new Neo4JOutputFormatMock<>(mappingStrategy, config);

@@ -9,7 +9,7 @@ import java.util.Map;
 import org.apache.flink.api.common.io.RichOutputFormat;
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.mapping.neo4j.DeserializationMapper;
-import org.apache.flink.mapping.neo4j.Neo4JSinkMappingStrategy;
+import org.apache.flink.mapping.neo4j.Neo4JDeserializationMappingStrategy;
 import org.apache.flink.streaming.connectors.neo4j.Neo4JDriverWrapper;
 import org.neo4j.driver.v1.Session;
 import org.neo4j.driver.v1.Statement;
@@ -34,7 +34,7 @@ public class Neo4JOutputFormat<T> extends RichOutputFormat<T> {
 
 	protected transient Neo4JDriverWrapper driver;
 
-	private Neo4JSinkMappingStrategy<T, DeserializationMapper<T>> mappingStrategy;
+	private Neo4JDeserializationMappingStrategy<T, DeserializationMapper<T>> mappingStrategy;
 
 	protected transient StatementResult result;
 
@@ -49,7 +49,7 @@ public class Neo4JOutputFormat<T> extends RichOutputFormat<T> {
 	 * @param config
 	 *            the connection configurations for Neo4J
 	 */
-	public Neo4JOutputFormat(final Neo4JSinkMappingStrategy<T, DeserializationMapper<T>> mappingStrategy,
+	public Neo4JOutputFormat(final Neo4JDeserializationMappingStrategy<T, DeserializationMapper<T>> mappingStrategy,
 			final Map<String, String> config) {
 		this.mappingStrategy = mappingStrategy;
 		this.config = config;

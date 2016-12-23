@@ -7,7 +7,7 @@ import java.util.Map;
 
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.mapping.neo4j.DeserializationMapper;
-import org.apache.flink.mapping.neo4j.Neo4JSinkMappingStrategy;
+import org.apache.flink.mapping.neo4j.Neo4JDeserializationMappingStrategy;
 import org.apache.flink.streaming.api.functions.sink.RichSinkFunction;
 import org.neo4j.driver.v1.Session;
 import org.neo4j.driver.v1.Statement;
@@ -35,9 +35,9 @@ public class Neo4JSink<T> extends RichSinkFunction<T> {
 	/**
 	 * The mapping strategy that we use to map data from Flink to Neo4J
 	 * 
-	 * @see Neo4JSinkMappingStrategy
+	 * @see Neo4JDeserializationMappingStrategy
 	 */
-	private Neo4JSinkMappingStrategy<T, DeserializationMapper<T>> mappingStrategy;
+	private Neo4JDeserializationMappingStrategy<T, DeserializationMapper<T>> mappingStrategy;
 
 	/**
 	 * A map representing the Neo4J connection parameters
@@ -53,7 +53,7 @@ public class Neo4JSink<T> extends RichSinkFunction<T> {
 	 * @param config
 	 *            the connection configurations for Neo4J
 	 */
-	public Neo4JSink(final Neo4JSinkMappingStrategy<T, DeserializationMapper<T>> mappingStrategy, final Map<String, String> config) {
+	public Neo4JSink(final Neo4JDeserializationMappingStrategy<T, DeserializationMapper<T>> mappingStrategy, final Map<String, String> config) {
 		this.mappingStrategy = mappingStrategy;
 		this.config = config;
 	}
@@ -99,7 +99,7 @@ public class Neo4JSink<T> extends RichSinkFunction<T> {
 	 * 
 	 * @return a mapping strategy
 	 */
-	public Neo4JSinkMappingStrategy<T, DeserializationMapper<T>> getMappingStrategy() {
+	public Neo4JDeserializationMappingStrategy<T, DeserializationMapper<T>> getMappingStrategy() {
 		return this.mappingStrategy;
 	}
 }

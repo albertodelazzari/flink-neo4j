@@ -8,7 +8,7 @@ import java.util.Map;
 import org.apache.flink.api.common.typeinfo.TypeInformation;
 import org.apache.flink.api.java.typeutils.ResultTypeQueryable;
 import org.apache.flink.configuration.Configuration;
-import org.apache.flink.mapping.neo4j.Neo4JSourceMappingStrategy;
+import org.apache.flink.mapping.neo4j.Neo4JSerializationMappingStrategy;
 import org.apache.flink.mapping.neo4j.SerializationMapper;
 import org.apache.flink.streaming.api.functions.source.RichSourceFunction;
 import org.neo4j.driver.v1.Record;
@@ -33,9 +33,9 @@ public class Neo4JSource<T> extends RichSourceFunction<T> implements ResultTypeQ
 	/**
 	 * The mapping strategy that we use to map data from Flink to Neo4J
 	 * 
-	 * @see Neo4JSourceMappingStrategy
+	 * @see Neo4JSerializationMappingStrategy
 	 */
-	private Neo4JSourceMappingStrategy<T, SerializationMapper<T>> mappingStrategy;
+	private Neo4JSerializationMappingStrategy<T, SerializationMapper<T>> mappingStrategy;
 
 	private Map<String, String> config;
 
@@ -47,7 +47,7 @@ public class Neo4JSource<T> extends RichSourceFunction<T> implements ResultTypeQ
 	 *            Neo4J data
 	 * @param config the connection configurations for Neo4J
 	 */
-	public Neo4JSource(final Neo4JSourceMappingStrategy<T, SerializationMapper<T>> mappingStrategy,
+	public Neo4JSource(final Neo4JSerializationMappingStrategy<T, SerializationMapper<T>> mappingStrategy,
 			final Map<String, String> config) {
 		this.mappingStrategy = mappingStrategy;
 		this.config = config;

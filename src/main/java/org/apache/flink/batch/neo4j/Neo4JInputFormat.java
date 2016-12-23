@@ -14,7 +14,7 @@ import org.apache.flink.configuration.Configuration;
 import org.apache.flink.core.io.GenericInputSplit;
 import org.apache.flink.core.io.InputSplit;
 import org.apache.flink.core.io.InputSplitAssigner;
-import org.apache.flink.mapping.neo4j.Neo4JSourceMappingStrategy;
+import org.apache.flink.mapping.neo4j.Neo4JSerializationMappingStrategy;
 import org.apache.flink.mapping.neo4j.SerializationMapper;
 import org.apache.flink.streaming.connectors.neo4j.Neo4JDriverWrapper;
 import org.neo4j.driver.v1.Record;
@@ -46,7 +46,7 @@ public class Neo4JInputFormat<T> extends RichInputFormat<T, InputSplit> implemen
 
 	protected transient Neo4JDriverWrapper driver;
 
-	private Neo4JSourceMappingStrategy<T, SerializationMapper<T>> mappingStrategy;
+	private Neo4JSerializationMappingStrategy<T, SerializationMapper<T>> mappingStrategy;
 
 	protected transient StatementResult result;
 
@@ -61,7 +61,7 @@ public class Neo4JInputFormat<T> extends RichInputFormat<T, InputSplit> implemen
 	 * @param config
 	 *            the connection configurations for Neo4J
 	 */
-	public Neo4JInputFormat(final Neo4JSourceMappingStrategy<T, SerializationMapper<T>> mappingStrategy,
+	public Neo4JInputFormat(final Neo4JSerializationMappingStrategy<T, SerializationMapper<T>> mappingStrategy,
 			final Map<String, String> config) {
 		this.mappingStrategy = mappingStrategy;
 		this.config = config;

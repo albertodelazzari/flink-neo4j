@@ -5,12 +5,12 @@ import java.io.Serializable;
 import org.neo4j.driver.v1.Record;
 import org.neo4j.driver.v1.Statement;
 
-public class Neo4JSourceMappingStrategy<T, M extends SerializationMapper<T>> implements Serializable {
+public class Neo4JSerializationMappingStrategy<T, M extends SerializationMapper<T>> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * 
+	 * The templated cypher query that will be executed on Neo4J
 	 */
 	private String templateStatement;
 
@@ -24,7 +24,7 @@ public class Neo4JSourceMappingStrategy<T, M extends SerializationMapper<T>> imp
 	 * @param templateStatement the cypher statement template
 	 * @param mapper an actual SerializationMapper implementation
 	 */
-	public Neo4JSourceMappingStrategy(final String templateStatement, M mapper) {
+	public Neo4JSerializationMappingStrategy(final String templateStatement, M mapper) {
 		this.templateStatement = templateStatement;
 		this.mapper = mapper;
 	}
