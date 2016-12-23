@@ -25,7 +25,7 @@ public class Neo4JDriverWrapperTest extends Neo4JBaseEmbeddedTest {
 		parameters.put("neo4j.auth.username", "neo4j");
 		parameters.put("neo4j.auth.password", "password");
 		
-		Neo4JDriverWrapper driverWrapper = new Neo4JDriverWrapperMock(parameters, neo4JDriver);
+		Neo4JDriverWrapper driverWrapper = new Neo4JDriverWrapper(parameters);
 		assertNotNull(driverWrapper);
 		Session session = driverWrapper.session();
 		assertNotNull(session);

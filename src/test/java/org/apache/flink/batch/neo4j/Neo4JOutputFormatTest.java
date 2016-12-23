@@ -3,6 +3,9 @@
  */
 package org.apache.flink.batch.neo4j;
 
+import static org.junit.Assert.assertTrue;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -55,5 +58,24 @@ public class Neo4JOutputFormatTest extends Neo4JBaseEmbeddedTest {
 		dataSource.output(outputFormat);
 
 		env.execute();
+	}
+	
+	@Test
+	public void testSession() throws IOException{
+		Map<String, String> config = new HashMap<String, String>();
+		config.put(Neo4JDriverWrapper.URL, DEFAULT_URL);
+		config.put(Neo4JDriverWrapper.USERNAME_PARAM, DEFAULT_USERNAME);
+		config.put(Neo4JDriverWrapper.PASSWORD_PARAM, DEFAULT_PASSWORD);
+
+		String statementTemplate = "MERGE (tuple:Tuple {name: {t1}, index: {t2}}) RETURN tuple";
+		DeserializationMapper<Tuple2<String, Integer>> mapper = new SimpleValuesMapper();
+		Neo4JDeserializationMappingStrategy<Tuple2<String, Integer>, DeserializationMapper<Tuple2<String, Integer>>> mappingStrategy = new Neo4JDeserializationMappingStrategy<Tuple2<String, Integer>, DeserializationMapper<Tuple2<String, Integer>>>(
+				statementTemplate, mapper);
+		
+		
+		Neo4JOutputFormat<Tuple2<String, Integer>> outputFormat = new Neo4JOutputFormatMock<>(mappingStrategy, config);
+	
+		outputFormat.open(1, 1);
+		assertTrue(outputFormat.session.isOpen());
 	}
 }
