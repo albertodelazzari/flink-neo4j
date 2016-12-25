@@ -1,8 +1,6 @@
 package org.apache.flink.batch.neo4j;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.flink.api.common.typeinfo.BasicTypeInfo;
 import org.apache.flink.api.java.ExecutionEnvironment;
@@ -14,7 +12,6 @@ import org.apache.flink.mapping.neo4j.Neo4JSerializationMappingStrategy;
 import org.apache.flink.mapping.neo4j.Neo4JSourceMappingStrategyString;
 import org.apache.flink.mapping.neo4j.SerializationMapper;
 import org.apache.flink.mapping.neo4j.StringSerializationMapper;
-import org.apache.flink.streaming.connectors.neo4j.Neo4JDriverWrapper;
 import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -28,18 +25,13 @@ public class Neo4JInputFormatTest extends Neo4JBaseEmbeddedTest {
 	public void testInputFormatCount() throws Exception {
 		ExecutionEnvironment env = ExecutionEnvironment.createLocalEnvironment();
 
-		Map<String, String> config = new HashMap<String, String>();
-		config.put(Neo4JDriverWrapper.URL, DEFAULT_URL);
-		config.put(Neo4JDriverWrapper.USERNAME_PARAM, DEFAULT_USERNAME);
-		config.put(Neo4JDriverWrapper.PASSWORD_PARAM, DEFAULT_PASSWORD);
-
 		SerializationMapper<String> serializationMapper = new StringSerializationMapper();
 		String statement = "MATCH (i:Item) return i.description";
 
 		Neo4JSerializationMappingStrategy<String, SerializationMapper<String>> mappingStrategy = new Neo4JSourceMappingStrategyString(
 				statement, serializationMapper);
 		
-		Neo4JInputFormatMock<String> inputFormatMock = new Neo4JInputFormatMock<>(mappingStrategy, config);
+		Neo4JInputFormatMock<String> inputFormatMock = new Neo4JInputFormatMock<>(mappingStrategy, neo4JConfig);
 		
 		DataSource<String> neo4jSource = env.createInput(inputFormatMock, BasicTypeInfo.STRING_TYPE_INFO);
 		

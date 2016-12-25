@@ -42,17 +42,12 @@ public class Neo4JOutputFormatTest extends Neo4JBaseEmbeddedTest {
 	public void testInputFormatCount() throws Exception {
 		ExecutionEnvironment env = ExecutionEnvironment.createLocalEnvironment();
 
-		Map<String, String> config = new HashMap<String, String>();
-		config.put(Neo4JDriverWrapper.URL, DEFAULT_URL);
-		config.put(Neo4JDriverWrapper.USERNAME_PARAM, DEFAULT_USERNAME);
-		config.put(Neo4JDriverWrapper.PASSWORD_PARAM, DEFAULT_PASSWORD);
-
 		String statementTemplate = "MERGE (tuple:Tuple {name: {t1}, index: {t2}}) RETURN tuple";
 		DeserializationMapper<Tuple2<String, Integer>> mapper = new SimpleValuesMapper();
 		Neo4JDeserializationMappingStrategy<Tuple2<String, Integer>, DeserializationMapper<Tuple2<String, Integer>>> mappingStrategy = new Neo4JDeserializationMappingStrategy<Tuple2<String, Integer>, DeserializationMapper<Tuple2<String, Integer>>>(
 				statementTemplate, mapper);
 
-		Neo4JOutputFormat<Tuple2<String, Integer>> outputFormat = new Neo4JOutputFormatMock<>(mappingStrategy, config);
+		Neo4JOutputFormat<Tuple2<String, Integer>> outputFormat = new Neo4JOutputFormatMock<>(mappingStrategy, neo4JConfig);
 		DataSource<Tuple2<String, Integer>> dataSource = env.fromCollection(collection);
 
 		dataSource.output(outputFormat);
@@ -72,9 +67,9 @@ public class Neo4JOutputFormatTest extends Neo4JBaseEmbeddedTest {
 		Neo4JDeserializationMappingStrategy<Tuple2<String, Integer>, DeserializationMapper<Tuple2<String, Integer>>> mappingStrategy = new Neo4JDeserializationMappingStrategy<Tuple2<String, Integer>, DeserializationMapper<Tuple2<String, Integer>>>(
 				statementTemplate, mapper);
 		
-		
 		Neo4JOutputFormat<Tuple2<String, Integer>> outputFormat = new Neo4JOutputFormatMock<>(mappingStrategy, config);
 	
+		LOGGER.debug("Call open and check if the session is open");
 		outputFormat.open(1, 1);
 		assertTrue(outputFormat.session.isOpen());
 	}

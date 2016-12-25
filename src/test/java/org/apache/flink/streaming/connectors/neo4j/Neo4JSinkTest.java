@@ -1,9 +1,6 @@
 package org.apache.flink.streaming.connectors.neo4j;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.embedded.neo4j.Neo4JBaseEmbeddedTest;
@@ -14,15 +11,7 @@ import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.junit.Test;
 
-public class Neo4JSinkTest extends Neo4JBaseEmbeddedTest implements Serializable {
-
-	private static final long serialVersionUID = 1L;
-
-	private static final String DEFAULT_URL = "bolt://localhost:7687";
-
-	private static final String DEFAULT_USERNAME = "neo4j";
-
-	private static final String DEFAULT_PASSWORD = "password";
+public class Neo4JSinkTest extends Neo4JBaseEmbeddedTest {
 
 	private static final ArrayList<Tuple2<String, Integer>> collection = new ArrayList<>(20);
 
@@ -39,17 +28,13 @@ public class Neo4JSinkTest extends Neo4JBaseEmbeddedTest implements Serializable
 		DataStreamSource<Tuple2<String, Integer>> source = env.fromCollection(collection);
 
 		String statementTemplate = "MERGE (tuple:Tuple {name: {t1}, index: {t2}}) RETURN tuple";
-		Map<String, String> config = new HashMap<String, String>();
-		config.put(Neo4JDriverWrapper.URL, DEFAULT_URL);
-		config.put(Neo4JDriverWrapper.USERNAME_PARAM, DEFAULT_USERNAME);
-		config.put(Neo4JDriverWrapper.PASSWORD_PARAM, DEFAULT_PASSWORD);
 
 		DeserializationMapper<Tuple2<String, Integer>> mapper = new SimpleValuesMapper();
 		Neo4JDeserializationMappingStrategy<Tuple2<String, Integer>, DeserializationMapper<Tuple2<String, Integer>>> mappingStrategy = new Neo4JDeserializationMappingStrategy<Tuple2<String, Integer>, DeserializationMapper<Tuple2<String, Integer>>>(
 				statementTemplate, mapper);
 
 		Neo4JSinkMock<Tuple2<String, Integer>> neo4jSink = new Neo4JSinkMock<Tuple2<String, Integer>>(mappingStrategy,
-				config);
+				neo4JConfig);
 		source.addSink(neo4jSink);
 
 		env.execute();

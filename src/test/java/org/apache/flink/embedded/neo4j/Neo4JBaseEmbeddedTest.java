@@ -20,6 +20,8 @@ public class Neo4JBaseEmbeddedTest {
 	public static Neo4jRule neo4jRule;
 	
 	public static Neo4JDriverWrapper driverWrapper;
+	
+	public static Map<String, String> neo4JConfig;
 
 	static {
 		neo4jRule = new Neo4jRule().withFixture("create (i:Item {description:'an item'})");
@@ -27,11 +29,12 @@ public class Neo4JBaseEmbeddedTest {
 
 	@BeforeClass
 	public static void init() {
-		Map<String, String> config = new HashMap<String, String>();
-		config.put(Neo4JDriverWrapper.URL, neo4jRule.boltURI().toString());
-		config.put(Neo4JDriverWrapper.USERNAME_PARAM, "");
-		config.put(Neo4JDriverWrapper.PASSWORD_PARAM, "");
+		neo4JConfig = new HashMap<String, String>();
+		neo4JConfig.put(Neo4JDriverWrapper.URL, neo4jRule.boltURI().toString());
+		neo4JConfig.put(Neo4JDriverWrapper.USERNAME_PARAM, "neo4j");
+		neo4JConfig.put(Neo4JDriverWrapper.PASSWORD_PARAM, "password");
+		neo4JConfig.put(Neo4JDriverWrapper.SESSION_LIVENESS_TIMEOUT, "2000");
 		
-		driverWrapper = new Neo4JDriverWrapper(config);
+		driverWrapper = new Neo4JDriverWrapper(neo4JConfig);
 	}
 }
