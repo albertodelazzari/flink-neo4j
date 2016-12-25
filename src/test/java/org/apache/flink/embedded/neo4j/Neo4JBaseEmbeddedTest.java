@@ -39,7 +39,7 @@ public class Neo4JBaseEmbeddedTest {
 		neo4JConfig.put(Neo4JDriverWrapper.URL, neo4jRule.boltURI().toString());
 		neo4JConfig.put(Neo4JDriverWrapper.USERNAME_PARAM, "neo4j");
 		neo4JConfig.put(Neo4JDriverWrapper.PASSWORD_PARAM, "password");
-		neo4JConfig.put(Neo4JDriverWrapper.SESSION_LIVENESS_TIMEOUT, "2000");
+		neo4JConfig.put(Neo4JDriverWrapper.SESSION_LIVENESS_TIMEOUT, "4000");
 		
 		driverWrapper = new Neo4JDriverWrapper(neo4JConfig);
 	}
