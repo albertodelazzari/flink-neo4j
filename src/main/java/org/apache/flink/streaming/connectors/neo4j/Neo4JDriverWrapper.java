@@ -6,7 +6,6 @@ package org.apache.flink.streaming.connectors.neo4j;
 import java.io.Serializable;
 import java.util.Map;
 
-import org.apache.commons.lang3.StringUtils;
 import org.neo4j.driver.v1.AuthToken;
 import org.neo4j.driver.v1.AuthTokens;
 import org.neo4j.driver.v1.Config;
@@ -32,8 +31,15 @@ public class Neo4JDriverWrapper implements Serializable {
 	public static final String PASSWORD_PARAM = "neo4j.auth.password";
 
 	public static final String URL = "neo4j.url";
-	
+
 	public static final String SESSION_LIVENESS_TIMEOUT = "neo4j.session.livetimeout";
+
+	/**
+	 * The default session liveness timeout as it's defined by the ConfigBuilder class.
+	 * 
+	 * @see org.neo4j.driver.v1.Config.ConfigBuilder
+	 */
+	private final String DEFAULT_SESSION_LIVENESS_TIMEOUT = "200";
 
 	private Map<String, String> parameters;
 
@@ -68,7 +74,7 @@ public class Neo4JDriverWrapper implements Serializable {
 		String url = parameters.get(URL);
 		String username = parameters.get(USERNAME_PARAM);
 		String password = parameters.get(PASSWORD_PARAM);
-		String timeout = parameters.get(SESSION_LIVENESS_TIMEOUT);
+		String timeout = parameters.getOrDefault(SESSION_LIVENESS_TIMEOUT, DEFAULT_SESSION_LIVENESS_TIMEOUT);
 
 		AuthToken authToken = AuthTokens.basic(username, password);
 		LOGGER.debug("Basic authentication token with username {}", username);
@@ -86,11 +92,6 @@ public class Neo4JDriverWrapper implements Serializable {
 	 * @return
 	 */
 	private long getLongValue(String longValue) {
-		// Set the default timeout
-		if (StringUtils.isEmpty(longValue)) {
-			return 200;
-		}
-
 		return Long.valueOf(longValue);
 	}
 

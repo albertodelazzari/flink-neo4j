@@ -4,10 +4,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.flink.streaming.connectors.neo4j.Neo4JDriverWrapper;
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
 import org.neo4j.harness.junit.Neo4jRule;
 
+/**
+ * 
+ * @author Alberto De Lazzari
+ *
+ */
 public class Neo4JBaseEmbeddedTest {
 
 	public static final String DEFAULT_URL = "bolt://localhost:7687";
@@ -36,5 +42,10 @@ public class Neo4JBaseEmbeddedTest {
 		neo4JConfig.put(Neo4JDriverWrapper.SESSION_LIVENESS_TIMEOUT, "2000");
 		
 		driverWrapper = new Neo4JDriverWrapper(neo4JConfig);
+	}
+	
+	@AfterClass
+	public static void tearDown(){
+		driverWrapper.close();
 	}
 }
