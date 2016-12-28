@@ -1,6 +1,3 @@
-/**
- * 
- */
 package org.apache.flink.streaming.connectors.neo4j;
 
 import java.io.Serializable;
@@ -26,23 +23,42 @@ public class Neo4JDriverWrapper implements Serializable {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(Neo4JDriverWrapper.class);
 
+	/**
+	 * The username property key.
+	 */
 	public static final String USERNAME_PARAM = "neo4j.auth.username";
 
+	/**
+	 * The password property key.
+	 */
 	public static final String PASSWORD_PARAM = "neo4j.auth.password";
 
+	/**
+	 * The Neo4J server url property key.
+	 */
 	public static final String URL = "neo4j.url";
 
+	/**
+	 * The session liveness timeout property key.
+	 */
 	public static final String SESSION_LIVENESS_TIMEOUT = "neo4j.session.livetimeout";
 
 	/**
 	 * The default session liveness timeout as it's defined by the ConfigBuilder class.
-	 * 
 	 * @see org.neo4j.driver.v1.Config.ConfigBuilder
 	 */
-	private final String DEFAULT_SESSION_LIVENESS_TIMEOUT = "200";
+	private static final String DEFAULT_SESSION_LIVENESS_TIMEOUT = "200";
 
+	/**
+	 * The configuration parameters.
+	 */
 	private Map<String, String> parameters;
 
+	/**
+	 * The internal Neo4J Driver.
+	 * 
+	 * @see org.neo4j.driver.v1.Driver
+	 */
 	protected transient Driver driver;
 
 	/**
@@ -66,11 +82,11 @@ public class Neo4JDriverWrapper implements Serializable {
 	}
 
 	/**
-	 * Init the internal Neo4J driver
+	 * Init the internal Neo4J driver.
 	 * 
 	 * @see org.neo4j.driver.v1.Driver
 	 */
-	protected void initDriver() {
+	protected final void initDriver() {
 		String url = parameters.get(URL);
 		String username = parameters.get(USERNAME_PARAM);
 		String password = parameters.get(PASSWORD_PARAM);
@@ -86,32 +102,32 @@ public class Neo4JDriverWrapper implements Serializable {
 	}
 
 	/**
+	 * Get the corresponding long value for the given string.
 	 * 
 	 * @param longValue
 	 *            a long number as a string
-	 * @return
+	 * @return the long value
 	 */
-	private long getLongValue(String longValue) {
+	private long getLongValue(final String longValue) {
 		return Long.valueOf(longValue);
 	}
 
 	/**
-	 * Establish a session
+	 * Establish a session.
 	 * 
 	 * @see org.neo4j.driver.v1.Session
-	 * 
 	 * @return a Neo4J session
 	 */
-	public Session session() {
+	public final Session session() {
 		return driver.session();
 	}
 
 	/**
-	 * Close all the resources assigned to the internal Neo4J Driver
+	 * Close all the resources assigned to the internal Neo4J Driver.
 	 * 
 	 * @see org.neo4j.driver.v1.Driver
 	 */
-	public void close() {
+	public final void close() {
 		driver.close();
 	}
 }
