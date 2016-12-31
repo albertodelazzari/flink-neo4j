@@ -5,7 +5,7 @@ package org.apache.flink.batch.neo4j;
 
 import java.util.Map;
 
-import org.apache.flink.embedded.neo4j.Neo4JBaseEmbeddedTest;
+import org.apache.flink.embedded.neo4j.Neo4JBaseEmbeddedConfig;
 import org.apache.flink.mapping.neo4j.Neo4JSerializationMappingStrategy;
 import org.apache.flink.mapping.neo4j.SerializationMapper;
 
@@ -25,7 +25,7 @@ public class Neo4JInputFormatMock<T> extends Neo4JInputFormat<T> {
 	@Override
 	public void openInputFormat() {
 		// We use a static driver wrapper with an embedded Neo4J instance
-		driver = Neo4JBaseEmbeddedTest.driverWrapper;
+		driver = Neo4JBaseEmbeddedConfig.driverWrapper;
 		session = driver.session();
 	}
 	

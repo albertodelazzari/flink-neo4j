@@ -6,7 +6,7 @@ package org.apache.flink.batch.neo4j;
 import java.io.IOException;
 import java.util.Map;
 
-import org.apache.flink.embedded.neo4j.Neo4JBaseEmbeddedTest;
+import org.apache.flink.embedded.neo4j.Neo4JBaseEmbeddedConfig;
 import org.apache.flink.mapping.neo4j.DeserializationMapper;
 import org.apache.flink.mapping.neo4j.Neo4JDeserializationMappingStrategy;
 
@@ -26,7 +26,7 @@ public class Neo4JOutputFormatMock<T> extends Neo4JOutputFormat<T> {
 	@Override
 	public void open(int taskNumber, int numTasks) throws IOException {
 		// We use a static driver wrapper with an embedded Neo4J instance
-		driver = Neo4JBaseEmbeddedTest.driverWrapper;
+		driver = Neo4JBaseEmbeddedConfig.driverWrapper;
 		session = driver.session();
 	}
 	

@@ -1,6 +1,6 @@
 package org.apache.flink.streaming.connectors.neo4j;
 
-import org.apache.flink.embedded.neo4j.Neo4JBaseEmbeddedTest;
+import org.apache.flink.embedded.neo4j.Neo4JBaseEmbeddedConfig;
 import org.apache.flink.mapping.neo4j.Neo4JSerializationMappingStrategy;
 import org.apache.flink.mapping.neo4j.Neo4JSourceMappingStrategyString;
 import org.apache.flink.mapping.neo4j.SerializationMapper;
@@ -10,7 +10,7 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.functions.sink.PrintSinkFunction;
 import org.junit.Test;
 
-public class Neo4JSourceTest extends Neo4JBaseEmbeddedTest {
+public class Neo4JSourceTest extends Neo4JBaseEmbeddedConfig {
 
 	@Test
 	public void testSource() throws Exception {

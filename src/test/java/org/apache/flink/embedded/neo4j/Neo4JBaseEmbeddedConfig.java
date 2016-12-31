@@ -14,7 +14,7 @@ import org.neo4j.harness.junit.Neo4jRule;
  * @author Alberto De Lazzari
  *
  */
-public class Neo4JBaseEmbeddedTest {
+public class Neo4JBaseEmbeddedConfig {
 
 	public static final String DEFAULT_URL = "bolt://localhost:7687";
 

@@ -3,7 +3,7 @@ package org.apache.flink.streaming.connectors.neo4j;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import org.apache.flink.embedded.neo4j.Neo4JBaseEmbeddedTest;
+import org.apache.flink.embedded.neo4j.Neo4JBaseEmbeddedConfig;
 import org.junit.Test;
 import org.neo4j.driver.v1.Session;
 import org.neo4j.driver.v1.StatementResult;
@@ -13,7 +13,7 @@ import org.neo4j.driver.v1.StatementResult;
  * @author Alberto De Lazzari
  *
  */
-public class Neo4JDriverWrapperTest extends Neo4JBaseEmbeddedTest {
+public class Neo4JDriverWrapperTest extends Neo4JBaseEmbeddedConfig {
 
 	@Test
 	public void testConfiguration() {

@@ -3,7 +3,7 @@ package org.apache.flink.streaming.connectors.neo4j;
 import java.util.ArrayList;
 
 import org.apache.flink.api.java.tuple.Tuple2;
-import org.apache.flink.embedded.neo4j.Neo4JBaseEmbeddedTest;
+import org.apache.flink.embedded.neo4j.Neo4JBaseEmbeddedConfig;
 import org.apache.flink.mapping.neo4j.DeserializationMapper;
 import org.apache.flink.mapping.neo4j.Neo4JDeserializationMappingStrategy;
 import org.apache.flink.mapping.neo4j.SimpleValuesMapper;
@@ -11,7 +11,7 @@ import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.junit.Test;
 
-public class Neo4JSinkTest extends Neo4JBaseEmbeddedTest {
+public class Neo4JSinkTest extends Neo4JBaseEmbeddedConfig {
 
 	private static final ArrayList<Tuple2<String, Integer>> collection = new ArrayList<>(20);
 
