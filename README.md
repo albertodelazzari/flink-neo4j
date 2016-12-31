@@ -5,6 +5,6 @@ Flink connector provides a source and a sink that can read from and write to Neo
 
 [![Quality Gate](https://sonarqube.com/api/badges/gate?key=it.neo4j%3Aflink-connector)](https://sonarqube.com/api/badges/gate?key=it.neo4j%3Aflink-connector)
 
-[![Code Coverage](https://sonarqube.com/api/badges/measure?key=it.neo4j%3Aflink-connector&amp;metric=coverage)](https://sonarqube.com/api/badges/measure?key=it.neo4j%3Aflink-connector&amp;metric=coverage) 
+[![Code Coverage](https://sonarqube.com/api/badges/measure?key=it.neo4j%3Aflink-connector&metric=coverage)](https://sonarqube.com/api/badges/measure?key=it.neo4j%3Aflink-connector&metric=coverage) 
 
 [Check overall code quality status](https://sonarqube.com/dashboard/index?id=it.neo4j%3Aflink-connector)  
