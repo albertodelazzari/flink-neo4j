@@ -1,0 +1,12 @@
+{
+    "plugins": [
+        "theme-api"
+    ],
+    "pluginsConfig": {
+        "theme-api": {
+            "languages": "java",
+            "split": true,
+            "theme": "light"
+        }
+    }
+}
