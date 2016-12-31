@@ -39,7 +39,7 @@
 
 	<scm>
 		<connection>scm:git:albertodelazzari@github.com/albertodelazzari/flink-neo4j.git</connection>
-		<developerConnection>scm:albertodelazzari@github.com/albertodelazzari/flink-neo4j.git</developerConnection>
+		<developerConnection>scm:git:[fetch=]http://github.com/albertodelazzari/flink-neo4j[push=]ssh://albertodelazzari@github.com/albertodelazzari/flink-neo4j.git</developerConnection>
 		<url>http://github.com/albertodelazzari/flink-neo4j.git</url>
 	</scm>
 
@@ -111,6 +111,13 @@
 			</exclusions>
 		</dependency>
 	</dependencies>
+
+	<distributionManagement>
+		<site>
+			<id>flink-connector</id>
+			<url>scp://www.yourcompany.com/www/docs/project/</url>
+		</site>
+  	</distributionManagement>
 
 	<build>
 		<plugins>
@@ -210,6 +217,22 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>3.6</version>
+			</plugin>
+			<!-- 
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-scm-publish-plugin</artifactId>
+				<version>1.1</version>
+				<inherited>true</inherited>
+				<configuration>
+				
+				</configuration>
+			</plugin>
+			-->
 		</plugins>
 	</build>
 
@@ -217,8 +240,32 @@
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>2.6</version>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>index</report>
+							<report>license</report>
+							<report>project-team</report>
+							<report>dependency-info</report>
+							<report>scm</report>
+							<report>summary</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<version>2.10.4</version>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>javadoc</report>
+						</reports>
+					</reportSet>
+				</reportSets>
 				<configuration>
 					<reportOutputDirectory>${project.build.directory}/..</reportOutputDirectory>
 					<destDir>apidocs</destDir>
@@ -227,4 +274,5 @@
 		</plugins>
 	</reporting>
 
+	<url>https://github.com/albertodelazzari/flink-neo4j</url>
 </project>
