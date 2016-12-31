@@ -24,6 +24,7 @@ public class Neo4JInputFormatMock<T> extends Neo4JInputFormat<T> {
 
 	@Override
 	public void openInputFormat() {
+		super.openInputFormat();
 		// We use a static driver wrapper with an embedded Neo4J instance
 		driver = Neo4JBaseEmbeddedConfig.driverWrapper;
 		session = driver.session();

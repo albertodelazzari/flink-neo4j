@@ -25,16 +25,10 @@ public class Neo4JOutputFormatMock<T> extends Neo4JOutputFormat<T> {
 
 	@Override
 	public void open(int taskNumber, int numTasks) throws IOException {
+		super.open(taskNumber, numTasks);
 		// We use a static driver wrapper with an embedded Neo4J instance
 		driver = Neo4JBaseEmbeddedConfig.driverWrapper;
 		session = driver.session();
-	}
-	
-	@Override
-	public void writeRecord(T record) throws IOException {
-		super.writeRecord(record);
-		session.run("MATCH (n) return n").list();
-		driver.session().run("MATCH (n) return n").list();
 	}
 	
 	@Override
@@ -43,6 +37,5 @@ public class Neo4JOutputFormatMock<T> extends Neo4JOutputFormat<T> {
 		if (session != null && session.isOpen()) {
 			session.close();
 		}
-
 	}
 }
