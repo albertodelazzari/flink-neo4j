@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.flink.streaming.connectors.neo4j.Neo4JDriverWrapper;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.ClassRule;
 import org.neo4j.harness.junit.Neo4jRule;
 
@@ -33,8 +33,8 @@ public class Neo4JBaseEmbeddedConfig {
 		neo4jRule = new Neo4jRule().withFixture("create (i:Item {description:'an item'})");
 	}
 
-	@BeforeClass
-	public static void init() {
+	@Before
+	public void init() {
 		neo4JConfig = new HashMap<String, String>();
 		neo4JConfig.put(Neo4JDriverWrapper.URL, neo4jRule.boltURI().toString());
 		neo4JConfig.put(Neo4JDriverWrapper.USERNAME_PARAM, "neo4j");
@@ -42,10 +42,5 @@ public class Neo4JBaseEmbeddedConfig {
 		neo4JConfig.put(Neo4JDriverWrapper.SESSION_LIVENESS_TIMEOUT, "4000");
 		
 		driverWrapper = new Neo4JDriverWrapper(neo4JConfig);
-	}
-	
-	@AfterClass
-	public static void tearDown(){
-		driverWrapper.close();
 	}
 }

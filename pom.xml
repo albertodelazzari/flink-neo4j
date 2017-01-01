@@ -115,7 +115,7 @@
 	<distributionManagement>
 		<site>
 			<id>flink-connector</id>
-			<url>scp://www.yourcompany.com/www/docs/project/</url>
+			<url>https://github.com/albertodelazzari/flink-neo4j.git</url>
 		</site>
   	</distributionManagement>
 

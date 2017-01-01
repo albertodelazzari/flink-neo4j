@@ -30,12 +30,4 @@ public class Neo4JOutputFormatMock<T> extends Neo4JOutputFormat<T> {
 		driver = Neo4JBaseEmbeddedConfig.driverWrapper;
 		session = driver.session();
 	}
-	
-	@Override
-	public void close() throws IOException {
-		// The driver will be close by the test class
-		if (session != null && session.isOpen()) {
-			session.close();
-		}
-	}
 }
