@@ -3,6 +3,7 @@ package org.apache.flink.streaming.connectors.neo4j;
 import java.io.Serializable;
 import java.util.Map;
 
+import org.apache.flink.util.Preconditions;
 import org.neo4j.driver.v1.AuthToken;
 import org.neo4j.driver.v1.AuthTokens;
 import org.neo4j.driver.v1.Config;
@@ -71,11 +72,13 @@ public class Neo4JDriverWrapper implements Serializable {
 	public Neo4JDriverWrapper(final Map<String, String> parameters) {
 		// We want to ensure that all the mandatory parameters are defined
 		boolean urlDefined = parameters.containsKey(URL);
-		assert urlDefined;
+		Preconditions.checkArgument(urlDefined, "URL connection to Neo4J server must be defined");
+		
 		boolean usernameDefined = parameters.containsKey(USERNAME_PARAM);
-		assert usernameDefined;
+		Preconditions.checkArgument(usernameDefined, "The username must be defined");
+		
 		boolean passwordDefined = parameters.containsKey(PASSWORD_PARAM);
-		assert passwordDefined;
+		Preconditions.checkArgument(passwordDefined, "The password must be defined");
 
 		this.parameters = parameters;
 		this.initDriver();
