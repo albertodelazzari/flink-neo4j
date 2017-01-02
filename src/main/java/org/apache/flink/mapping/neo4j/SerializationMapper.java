@@ -11,7 +11,7 @@ public interface SerializationMapper<T> extends Mapper {
 
 	/**
 	 * Convert a record (that is returned by the cypher query) into an object of
-	 * type T.</br>
+	 * type T.
 	 * 
 	 * Tips: Maybe record should be of type org.neo4j.driver.v1.Record
 	 * 

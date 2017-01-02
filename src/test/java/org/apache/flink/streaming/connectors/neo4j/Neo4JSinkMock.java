@@ -18,6 +18,7 @@ public class Neo4JSinkMock<T> extends Neo4JSink<T> {
 
 	@Override
 	public void open(Configuration parameters) throws Exception {
+		super.open(parameters);
 		// We use a static driver wrapper with an embedded Neo4J instance
 		driver = Neo4JBaseEmbeddedConfig.driverWrapper;
 	}
