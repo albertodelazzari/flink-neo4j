@@ -1,0 +1,3 @@
+org.apache.flink.batch.neo4j
+org.apache.flink.mapping.neo4j
+org.apache.flink.streaming.connectors.neo4j
