@@ -11,13 +11,25 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<project.reporting.outputDirectory>${project.build.directory}/../docs</project.reporting.outputDirectory>
 		<java.version>1.8</java.version>
 		<log4j.configuration>log4j-test.properties</log4j.configuration>
 		<neo4j.version>3.1.0</neo4j.version>
 		<neo4j.driver.version>1.0.6</neo4j.driver.version>
 		<flink.version>1.1.3</flink.version>
 		<flink.internal.version>2.11</flink.internal.version>
+		
+		<repository.domain>github.com</repository.domain>
+        <repository.user>albertodelazzari</repository.user>
+		<repository.name>flink-neo4j</repository.name>
 	</properties>
+	
+	<issueManagement>
+		<url>https://www.github.com/${repository.user}/${repository.name}/issues</url>
+		<system>Github Issues</system>
+	</issueManagement>
+
+	<url>https://github.com/albertodelazzari/flink-neo4j</url>
 
 	<licenses>
 		<license>
@@ -222,17 +234,6 @@
 				<artifactId>maven-site-plugin</artifactId>
 				<version>3.6</version>
 			</plugin>
-			<!-- 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-scm-publish-plugin</artifactId>
-				<version>1.1</version>
-				<inherited>true</inherited>
-				<configuration>
-				
-				</configuration>
-			</plugin>
-			-->
 		</plugins>
 	</build>
 
@@ -267,12 +268,10 @@
 					</reportSet>
 				</reportSets>
 				<configuration>
-					<reportOutputDirectory>${project.build.directory}/..</reportOutputDirectory>
+					<reportOutputDirectory>${project.build.directory}/../docs</reportOutputDirectory>
 					<destDir>apidocs</destDir>
 				</configuration>
 			</plugin>
 		</plugins>
 	</reporting>
-
-	<url>https://github.com/albertodelazzari/flink-neo4j</url>
 </project>
