@@ -1,0 +1,8 @@
+theme: jekyll-theme-cayman
+github: [metadata]
+kramdown:
+   input: GFM
+   hard_wrap: false
+gems:
+   - jekyll-coffeescript
+   - jekyll-paginate
