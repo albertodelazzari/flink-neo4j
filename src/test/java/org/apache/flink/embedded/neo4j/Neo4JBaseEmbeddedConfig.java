@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.flink.streaming.connectors.neo4j.Neo4JDriverWrapper;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.ClassRule;
 import org.neo4j.harness.junit.Neo4jRule;
