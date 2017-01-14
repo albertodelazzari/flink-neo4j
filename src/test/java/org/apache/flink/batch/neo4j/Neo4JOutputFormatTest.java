@@ -36,7 +36,7 @@ public class Neo4JOutputFormatTest extends Neo4JBaseEmbeddedConfig {
 	}
 
 	@Test
-	public void testInputFormatCount() throws Exception {
+	public void testOutputFormatCount() throws Exception {
 		ExecutionEnvironment env = ExecutionEnvironment.createLocalEnvironment();
 
 		String statementTemplate = "MERGE (tuple:Tuple {name: {t1}, index: {t2}}) RETURN tuple";

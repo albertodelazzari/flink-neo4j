@@ -32,8 +32,8 @@ public class Neo4JDeserializationMappingStrategy<T, M extends DeserializationMap
 	private String templateStatement;
 
 	/**
-	 * The mapper that will map a item from a Flink datastream/dataset to a set of
-	 * parameters
+	 * The mapper that will map a item from a Flink datastream/dataset to a set
+	 * of parameters
 	 * 
 	 * @see DeserializationMapper
 	 */
@@ -41,8 +41,10 @@ public class Neo4JDeserializationMappingStrategy<T, M extends DeserializationMap
 
 	/**
 	 * 
-	 * @param templateStatement the cypher statement template
-	 * @param mapper an actual DeserializationMapper implementation
+	 * @param templateStatement
+	 *            the cypher statement template
+	 * @param mapper
+	 *            an actual DeserializationMapper implementation
 	 */
 	public Neo4JDeserializationMappingStrategy(String templateStatement, M mapper) {
 		this.templateStatement = templateStatement;
@@ -53,7 +55,8 @@ public class Neo4JDeserializationMappingStrategy<T, M extends DeserializationMap
 	 * Generate a statement with parameters (templated cypher query) for a given
 	 * item and a convert function.
 	 * 
-	 * @param item a data stream item
+	 * @param item
+	 *            a data stream item
 	 * @return the executable statement with its text and parameters
 	 */
 	public Statement getStatement(T item) {
@@ -61,5 +64,9 @@ public class Neo4JDeserializationMappingStrategy<T, M extends DeserializationMap
 
 		Map<String, Object> parameters = mapper.deserialize(item);
 		return statement.withParameters(parameters);
+	}
+
+	protected void setStatement(String templateStatement) {
+		this.templateStatement = templateStatement;
 	}
 }
