@@ -5,8 +5,6 @@ package org.apache.flink.streaming.connectors.neo4j;
 
 import java.util.Map;
 
-import org.apache.flink.api.common.typeinfo.TypeInformation;
-import org.apache.flink.api.java.typeutils.ResultTypeQueryable;
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.mapping.neo4j.Neo4JSerializationMappingStrategy;
 import org.apache.flink.mapping.neo4j.SerializationMapper;
@@ -22,7 +20,7 @@ import org.slf4j.LoggerFactory;
  * @author Alberto De Lazzari
  *
  */
-public class Neo4JSource<T> extends RichSourceFunction<T> implements ResultTypeQueryable<T> {
+public class Neo4JSource<T> extends RichSourceFunction<T> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -83,16 +81,5 @@ public class Neo4JSource<T> extends RichSourceFunction<T> implements ResultTypeQ
 		}
 
 		session.close();
-	}
-
-	/**
-	 * @see ResultTypeQueryable
-	 * 
-	 * @return the type information
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public TypeInformation<T> getProducedType() {
-		return TypeInformation.of((Class<T>) this.getClass().getTypeParameters()[0].getClass());
 	}
 }
