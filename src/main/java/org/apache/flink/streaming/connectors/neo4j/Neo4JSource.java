@@ -43,7 +43,8 @@ public class Neo4JSource<T> extends RichSourceFunction<T> {
 	 * @param mappingStrategy
 	 *            a mapping strategy that will be used to map stream data from
 	 *            Neo4J data
-	 * @param config the connection configurations for Neo4J
+	 * @param config
+	 *            the connection configurations for Neo4J
 	 */
 	public Neo4JSource(final Neo4JSerializationMappingStrategy<T, SerializationMapper<T>> mappingStrategy,
 			final Map<String, String> config) {
@@ -71,7 +72,9 @@ public class Neo4JSource<T> extends RichSourceFunction<T> {
 		Session session = driver.session();
 
 		// We should use a statement with parameters
-		LOGGER.debug("running statement {}", queryStatement.text());
+		if (LOGGER.isDebugEnabled()) {
+			LOGGER.debug("running statement {}", queryStatement.text());
+		}
 		StatementResult result = session.run(queryStatement);
 		while (result.hasNext()) {
 			Record record = result.next();

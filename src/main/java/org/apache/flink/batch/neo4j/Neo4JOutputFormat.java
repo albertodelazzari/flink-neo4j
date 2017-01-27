@@ -75,7 +75,9 @@ public class Neo4JOutputFormat<T> extends RichOutputFormat<T> {
 	@Override
 	public void writeRecord(T record) throws IOException {
 		Statement statement = mappingStrategy.getStatement(record);
-		LOGGER.debug("running {}", statement.text());
+		if (LOGGER.isDebugEnabled()) {
+			LOGGER.debug("running {}", statement.text());
+		}
 		session.run(statement);
 	}
 

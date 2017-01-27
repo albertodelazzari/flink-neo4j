@@ -57,7 +57,7 @@ public class Neo4JInputFormat<T> extends RichInputFormat<T, InputSplit> implemen
 	 * 
 	 * @param mappingStrategy
 	 *            a mapping strategy that will be used to map batch data from
-	 *            Neo4J 
+	 *            Neo4J
 	 * @param config
 	 *            the connection configurations for Neo4J
 	 */
@@ -120,7 +120,9 @@ public class Neo4JInputFormat<T> extends RichInputFormat<T, InputSplit> implemen
 	@Override
 	public void open(InputSplit split) throws IOException {
 		Statement queryStatement = mappingStrategy.getStatement();
-		LOGGER.debug("running statement {}", queryStatement.text());
+		if (LOGGER.isDebugEnabled()) {
+			LOGGER.debug("running statement {}", queryStatement.text());
+		}
 		result = session.run(queryStatement);
 	}
 

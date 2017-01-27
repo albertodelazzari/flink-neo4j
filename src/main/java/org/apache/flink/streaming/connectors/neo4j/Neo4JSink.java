@@ -53,7 +53,8 @@ public class Neo4JSink<T> extends RichSinkFunction<T> {
 	 * @param config
 	 *            the connection configurations for Neo4J
 	 */
-	public Neo4JSink(final Neo4JDeserializationMappingStrategy<T, DeserializationMapper<T>> mappingStrategy, final Map<String, String> config) {
+	public Neo4JSink(final Neo4JDeserializationMappingStrategy<T, DeserializationMapper<T>> mappingStrategy,
+			final Map<String, String> config) {
 		this.mappingStrategy = mappingStrategy;
 		this.config = config;
 	}
@@ -62,7 +63,8 @@ public class Neo4JSink<T> extends RichSinkFunction<T> {
 	 * Initialize the connection to Neo4J. As the Elasticsearch connector we can
 	 * use and embedded instance or a cluster
 	 * 
-	 * @param parameters the configuration paramenters for this Sink
+	 * @param parameters
+	 *            the configuration paramenters for this Sink
 	 */
 	@Override
 	public void open(Configuration parameters) throws Exception {
@@ -89,7 +91,9 @@ public class Neo4JSink<T> extends RichSinkFunction<T> {
 	public void invoke(T element) throws Exception {
 		Statement queryStatement = getMappingStrategy().getStatement(element);
 		Session session = driver.session();
-		LOGGER.debug("running {}", queryStatement.text());
+		if (LOGGER.isDebugEnabled()) {
+			LOGGER.debug("running {}", queryStatement.text());
+		}
 		session.run(queryStatement);
 
 		session.close();
